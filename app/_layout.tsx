@@ -5,7 +5,8 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
-import { useColorScheme } from '@/components/useColorScheme';
+/* import { useColorScheme } from '@/components/useColorScheme'; */
+import { useColorScheme } from 'react-native';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -22,8 +23,12 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
+    'Cereal-light': require('../assets/fonts/AirbnbCereal_W_Lt.otf'),
+    'Cereal': require('../assets/fonts/AirbnbCereal_W_Bk.otf'),
+    'Cereal-medium': require('../assets/fonts/AirbnbCereal_W_Md.otf'),
+    'Cereal-bold': require('../assets/fonts/AirbnbCereal_W_Bd.otf'),
+    'Cereal-extra-bold': require('../assets/fonts/AirbnbCereal_W_Bd.otf'),
+    'Cereal-black': require('../assets/fonts/AirbnbCereal_W_Blk.otf'),
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
@@ -45,14 +50,10 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
-    </ThemeProvider>
   );
 }
