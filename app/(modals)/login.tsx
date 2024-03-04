@@ -1,12 +1,25 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
+import { useWarmUpBrowser } from "@/hooks/useWarmUpBrowser";
+import { defaultStyles} from '@/constants/Styles';
 
-const page = () => {
+const Page = () => {
+  useWarmUpBrowser();
+
   return (
-    <View>
-      <Text>Login</Text>
+    <View style={styles.container} >
+      <Text style={defaultStyles.textHeadings}>Log in or sign up to Airbnb</Text>
     </View>
   );
 };
 
-export default page;
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor: '#fff',
+    /* padding: 26, */
+    paddingLeft: 23,
+    
+  }
+})
+export default Page;

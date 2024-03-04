@@ -88,7 +88,7 @@ function RootLayoutNav() {
       <Stack.Screen
         name="(modals)/login"
         options={{
-          title: "Log in or sign up",
+          title: "Login",
           headerTitleStyle: {
             fontFamily: "Cereal-medium",
           },
