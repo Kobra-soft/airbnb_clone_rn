@@ -36,7 +36,7 @@ export const defaultStyles = StyleSheet.create({
       },
       btnIcon: {
         position: 'absolute',
-        left: 16,
+        left: 20,
       },
       footer: {
         position: 'absolute',
