@@ -8,6 +8,7 @@ const Page = () => {
       <Link href={"/(modals)/login"}>Login</Link>
       <Link href={"/(modals)/booking"}>Bookings</Link>
       <Link href={"/listing/1337"}>Listing details</Link>
+      <Link href={"/listing/animationScreen"}>Animation Screen</Link>
     </View>
   );
 };

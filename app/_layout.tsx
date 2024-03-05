@@ -114,6 +114,7 @@ function RootLayoutNav() {
           ),
         }}
       />
+      <Stack.Screen name="listing/animationScreen" options={{ headerTitle: "" }} />
     </Stack>
   );
 }
