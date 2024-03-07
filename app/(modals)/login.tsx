@@ -38,19 +38,19 @@ const Page = () => {
           </View>
           <View style={{ gap: 16}}>
             <TouchableOpacity style={styles.btnOutline}>
-              <Feather name="smartphone" size={21} color={"#505050"} style={defaultStyles.btnIcon}  />
+              <Feather name="smartphone" size={24} color={"#505050"} style={defaultStyles.btnIcon}  />
               <Text style={styles.btnOutlineText}>Continue with Phone</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnOutline}>
-              <FontAwesome5 name="facebook" size={22} color={"#000000"} style={defaultStyles.btnIcon}  />
+              <FontAwesome5 name="facebook" size={24} color={"#000000"} style={defaultStyles.btnIcon}  />
               <Text style={styles.btnOutlineText}>Continue with Facebook</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnOutline}>
-              <Ionicons name="logo-google" size={22} color={"#000000"} style={defaultStyles.btnIcon}  />
+              <Ionicons name="logo-google" size={24} color={"#000000"} style={defaultStyles.btnIcon}  />
               <Text style={styles.btnOutlineText}>Continue with Google</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnOutline}>
-              <AntDesign name="apple1" size={22} color={"#000000"} style={defaultStyles.btnIcon}  />
+              <AntDesign name="apple1" size={24} color={"#000000"} style={defaultStyles.btnIcon}  />
               <Text style={styles.btnOutlineText}>Continue with Apple</Text>
             </TouchableOpacity>
           </View>
