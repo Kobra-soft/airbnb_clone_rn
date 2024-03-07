@@ -4,9 +4,13 @@ import { useWarmUpBrowser } from "@/hooks/useWarmUpBrowser";
 import { defaultStyles} from '@/constants/Styles';
 import Colors from "@/constants/Colors";
 import { AntDesign, Feather, FontAwesome5, Ionicons } from "@expo/vector-icons";
+import { useOAuth } from "@clerk/clerk-expo";
 
 const Page = () => {
   useWarmUpBrowser();
+
+  const { startOAuthFlow: googleAuth } = useOAuth({strategy: 'oauth_google'});
+
 
   return (
     <View style={styles.container} >
