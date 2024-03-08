@@ -3,37 +3,37 @@ import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import { TouchableOpacity } from "react-native";
+import { LogBox, TouchableOpacity } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
 
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 const tokenCache = {
-  async getToken(key: string) {       
+  async getToken(key: string) {
     try {
       return SecureStore.getItemAsync(key);
     } catch (err) {
       return null;
     }
   },
-  async saveToken(key: string, value: string) {       
+  async saveToken(key: string, value: string) {
     try {
       return SecureStore.setItemAsync(key, value);
     } catch (err) {
       return;
     }
-  }
+  },
 };
 
-export {
+/* export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
-} from "expo-router";
+} from "expo-router"; */
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(tabs)",
+  initialRouteName: "(tabs)2",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -41,12 +41,12 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    "Cereal-light":      require("../assets/fonts/AirbnbCereal_W_Lt.otf"),
-    "Cereal":            require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
-    "Cereal-medium":     require("../assets/fonts/AirbnbCereal_W_Md.otf"),
-    "Cereal-bold":       require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
+    "Cereal-light": require("../assets/fonts/AirbnbCereal_W_Lt.otf"),
+    "Cereal": require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
+    "Cereal-medium": require("../assets/fonts/AirbnbCereal_W_Md.otf"),
+    "Cereal-bold": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
     "Cereal-extra-bold": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
-    "Cereal-black":      require("../assets/fonts/AirbnbCereal_W_Blk.otf"),
+    "Cereal-black": require("../assets/fonts/AirbnbCereal_W_Blk.otf"),
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
@@ -65,17 +65,20 @@ export default function RootLayout() {
   }
 
   return (
-    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY!} tokenCache={tokenCache}>
+    <ClerkProvider
+      publishableKey={CLERK_PUBLISHABLE_KEY!}
+      tokenCache={tokenCache}
+    >
       <RootLayoutNav />
     </ClerkProvider>
-  )
+  );
 }
 
 function RootLayoutNav() {
   const router = useRouter();
   const { isLoaded, isSignedIn } = useAuth();
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     if (isLoaded && !isSignedIn) {
       router.push('/(modals)/login');
     }
@@ -87,11 +90,18 @@ function RootLayoutNav() {
     console.log("isSignedIn:", isSignedIn);
 
     if (isLoaded && isSignedIn) {
-      router.push('/(tabs)'); // Navigate to the desired page after sign-in
-    } else if (isLoaded && !isSignedIn) {
-      router.push('/(modals)/login'); // Navigate to the login page if the user is not signed in
-    }
+      router.push("/(tabs)"); // Navigate to the desired page after sign-in
+    } /* else if (isLoaded && !isSignedIn) {
+      router.push("/(modals)/login"); // Navigate to the login page if the user is not signed in
+    } */
   }, [isLoaded, isSignedIn, router]);
+
+
+  // ignores logs for now, will remove later for production build!
+  // LogBox is automatically disabled in release (production) ... React-Native Debugging Guidelines
+  /* LogBox.ignoreAllLogs(true); */
+  LogBox.ignoreLogs(["The navigation state parsed from the URL contains routes not present in the root navigator. This usually means that the linking configuration doesn't match the navigation structure. See https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration."]);
+  /* The navigation state parsed from the URL contains routes not present in the root navigator. This usually means that the linking configuration doesn't match the navigation structure. See https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration. */
 
   return (
     <Stack>
@@ -125,8 +135,14 @@ function RootLayoutNav() {
           ),
         }}
       />
-      <Stack.Screen name="listing/animationScreen" options={{ headerTitle: "" }} />
-      <Stack.Screen name="listing/testpage" options={{ headerTitle: "testpage" }} />
+      <Stack.Screen
+        name="listing/animationScreen"
+        options={{ headerTitle: "" }}
+      />
+      <Stack.Screen
+        name="listing/testpage"
+        options={{ headerTitle: "testpage" }}
+      />
     </Stack>
   );
 }

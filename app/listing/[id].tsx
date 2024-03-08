@@ -4,7 +4,7 @@ import { useLocalSearchParams } from "expo-router";
 import LottieView from 'lottie-react-native';
 import { StatusBar } from "expo-status-bar";
 
-const Page = () => {
+const idScreen = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
   /* console.log(id) */
 
@@ -13,7 +13,7 @@ const Page = () => {
       {/* <Text>[id] Lottie Animation</Text> */}
       <View style={styles.welcome}>
       <LottieView style={styles.welcome} 
-      source={require('@/assets/lottie_animations/rn.json')} autoPlay loop />
+      source={require('@/assets/lottie_animations/airbnb.json')} autoPlay loop />
       </View> 
       <StatusBar style="auto" />
     </View>
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Page;
+export default idScreen;

@@ -8,7 +8,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 
-const Layout = () => {
+const LayoutScreen = () => {
   return (
     <Tabs
       screenOptions={{
@@ -76,4 +76,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default LayoutScreen;

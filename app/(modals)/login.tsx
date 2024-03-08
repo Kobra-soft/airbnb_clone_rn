@@ -7,14 +7,13 @@ import { AntDesign, Feather, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useOAuth } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 
-
 enum Strategy {
   Facebook = 'oauth_facebook',
   Google = 'oauth_google',
   Apple = 'oauth_apple'
 }
 
-const Page = () => {
+const LoginScreen = () => {
   useWarmUpBrowser();
   
   const router = useRouter();
@@ -35,8 +34,7 @@ const Page = () => {
 
       if (createdSessionId) {
         setActive!({ session: createdSessionId})
-       /*  router.back(); */
-       router.navigate('(tabs)'); // Replace 'Home' with the name of the route you want to navigate to
+        router.navigate('(tabs)'); // Navigating to the home screen after successful authentication
       } 
     }
     catch(err) {
@@ -130,4 +128,4 @@ const styles = StyleSheet.create({
   }
 
 })
-export default Page;
+export default LoginScreen;

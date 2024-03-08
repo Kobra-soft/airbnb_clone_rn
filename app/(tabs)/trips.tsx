@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const Explore = () => {
+const TripsScreen = () => {
   return (
     <View>
       <Text>Trips</Text>
@@ -9,4 +9,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default TripsScreen;
