@@ -8,7 +8,6 @@ import { useOAuth } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 
 enum Strategy {
-  /* Phone = 'oauth_phone' */
   Facebook = 'oauth_facebook',
   Google = 'oauth_google',
   Apple = 'oauth_apple'
