@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
-import { Stack, router, useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { TouchableOpacity } from "react-native";
@@ -75,12 +75,23 @@ function RootLayoutNav() {
   const router = useRouter();
   const { isLoaded, isSignedIn } = useAuth();
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (isLoaded && !isSignedIn) {
       router.push('/(modals)/login');
     }
 
-  }, [isLoaded])
+  }, [isLoaded]) */
+
+  useEffect(() => {
+    console.log("isLoaded:", isLoaded);
+    console.log("isSignedIn:", isSignedIn);
+
+    if (isLoaded && isSignedIn) {
+      router.push('/(tabs)'); // Navigate to the desired page after sign-in
+    } else if (isLoaded && !isSignedIn) {
+      router.push('/(modals)/login'); // Navigate to the login page if the user is not signed in
+    }
+  }, [isLoaded, isSignedIn, router]);
 
   return (
     <Stack>
@@ -115,6 +126,7 @@ function RootLayoutNav() {
         }}
       />
       <Stack.Screen name="listing/animationScreen" options={{ headerTitle: "" }} />
+      <Stack.Screen name="listing/testpage" options={{ headerTitle: "testpage" }} />
     </Stack>
   );
 }

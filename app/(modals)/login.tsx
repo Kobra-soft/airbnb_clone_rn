@@ -7,6 +7,7 @@ import { AntDesign, Feather, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useOAuth } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 
+
 enum Strategy {
   Facebook = 'oauth_facebook',
   Google = 'oauth_google',
@@ -32,19 +33,19 @@ const Page = () => {
       const { createdSessionId, setActive } = await SelectedAuth();
       console.log(" ~ file: login.tsx:31 ~ onSelectAuth ~ createSessionId", createdSessionId)
 
-      if ( createdSessionId) {
+      if (createdSessionId) {
         setActive!({ session: createdSessionId})
-        router.back();
-      }
+       /*  router.back(); */
+       router.navigate('(tabs)'); // Replace 'Home' with the name of the route you want to navigate to
+      } 
     }
     catch(err) {
         console.error('OAuth error:', err)
       }
   }
 
-
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <Text style={defaultStyles.textHeadings}>Log in or sign up to Airbnb</Text>
         <TextInput 
           autoCapitalize="none"
