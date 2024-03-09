@@ -121,7 +121,7 @@ function RootLayoutNav() {
           ),
         }}
       />
-      <Stack.Screen name="listing/[id]" options={{ headerTitle: "" }} />
+      <Stack.Screen name="listing/[id]" options={{ headerTitle: "listing/[id]" }} />
 
       <Stack.Screen
         name="(modals)/booking"
@@ -138,10 +138,6 @@ function RootLayoutNav() {
       <Stack.Screen
         name="listing/animationScreen"
         options={{ headerTitle: "" }}
-      />
-      <Stack.Screen
-        name="listing/testpage"
-        options={{ headerTitle: "testpage" }}
       />
     </Stack>
   );
