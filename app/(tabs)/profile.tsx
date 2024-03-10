@@ -15,7 +15,7 @@ const ProfileScreen = () => {
     navigation.goBack();
   };
 
-{/*        if user not signed in then show login link / DISABLED FOR NOW
+{/* if user not signed in then show login link / DISABLED FOR NOW
       {!isSignedIn && (
         <Link href={'/(modals)/login'}>
           <Text>Login</Text>
@@ -23,9 +23,9 @@ const ProfileScreen = () => {
       )} */}
 
 return (
-<View style={{ flex: 1, justifyContent: 'space-between', paddingTop: 20 }}>
+<View style={{ flex: 1, justifyContent: 'space-between'}}>
   <View style={styles.container}>
-    <Text style={defaultStyles.textHeadings}>Your profile</Text>
+    <Text style={[defaultStyles.textHeadings, {paddingTop:20} ]}>Your profile</Text>
     <Text>Log in to start planning your next trip</Text>
 
     {/* Login button */}

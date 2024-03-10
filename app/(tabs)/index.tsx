@@ -8,7 +8,7 @@ import Colors from "@/constants/Colors";
 const IndexScreen = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.linkContainer}>
+      <View style={[styles.linkContainer, /* {borderTopWidth:1.2} */]}>
         <Link href={"/(modals)/login"} style={styles.link}>Login</Link>
       </View>
       <View style={styles.linkContainer}>
@@ -29,20 +29,26 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    backgroundColor: '#FF5A5F',
-    padding: 20,
+    /* backgroundColor: '#FF5A5F', */
+    backgroundColor: '#FFFFFF',
+    /* padding: 16, */
+    paddingTop: 0,
   },
   linkContainer: {
     width: "100%",
-    borderBottomWidth: 1.5,
-    borderBottomColor: '#000',
+    borderBottomWidth: 1.2,
+    borderBottomColor: Colors.grey,
     borderStyle: 'solid',
+    paddingHorizontal: 18,
+    opacity: 5.8,
+    backgroundColor: '#FFFFFF',
+    
   },
   link: {
     color: Colors.dark,
-    fontSize: 20,
-    fontFamily: 'Cereal',
-    paddingVertical: 8,
+    fontSize: 18,
+    fontFamily: 'Cereal-medium',
+    paddingVertical: 10,
   },
 });
 
