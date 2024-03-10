@@ -33,7 +33,7 @@ const tokenCache = {
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(tabs)2",
+  initialRouteName: "(tabs)",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -96,11 +96,12 @@ function RootLayoutNav() {
     } */
   }, [isLoaded, isSignedIn, router]);
 
-
   // ignores logs for now, will remove later for production build!
   // LogBox is automatically disabled in release (production) ... React-Native Debugging Guidelines
   /* LogBox.ignoreAllLogs(true); */
-  LogBox.ignoreLogs(["The navigation state parsed from the URL contains routes not present in the root navigator. This usually means that the linking configuration doesn't match the navigation structure. See https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration."]);
+  LogBox.ignoreLogs([
+    "The navigation state parsed from the URL contains routes not present in the root navigator. This usually means that the linking configuration doesn't match the navigation structure. See https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration.",
+  ]);
   /* The navigation state parsed from the URL contains routes not present in the root navigator. This usually means that the linking configuration doesn't match the navigation structure. See https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration. */
 
   return (
@@ -121,13 +122,25 @@ function RootLayoutNav() {
           ),
         }}
       />
-      <Stack.Screen name="listing/[id]" options={{ headerTitle: "listing/[id]" }} />
-
+      <Stack.Screen
+        name="listing/[id]"
+        options={{
+          presentation: "transparentModal",
+          animation: "fade",
+          headerTitle: "Listing [id]",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name="close-outline" size={28} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
       <Stack.Screen
         name="(modals)/booking"
         options={{
           presentation: "transparentModal",
           animation: "fade",
+          headerTitle: "Booking",
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
               <Ionicons name="close-outline" size={28} />
@@ -137,7 +150,16 @@ function RootLayoutNav() {
       />
       <Stack.Screen
         name="listing/animationScreen"
-        options={{ headerTitle: "" }}
+        options={{
+          presentation: "transparentModal",
+          animation: "fade",
+          headerTitle: "Splash Screen",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name="close-outline" size={28} />
+            </TouchableOpacity>
+          ),
+        }}
       />
     </Stack>
   );

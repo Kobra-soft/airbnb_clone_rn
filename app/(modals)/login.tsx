@@ -121,7 +121,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   btnOutlineText: {
-    color: '#000',
+    /* color: '#000', */
+    color: Colors.dark,
     fontSize: 16,
     fontFamily: 'Cereal-medium',
     left:14

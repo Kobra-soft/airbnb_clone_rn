@@ -4,7 +4,7 @@ import React from "react";
 const BookingScreen = () => {
   return (
     <View>
-      <Text>BOOKING</Text>
+      <Text>Booking</Text>
     </View>
   );
 };

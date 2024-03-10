@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   link: {
     color: Colors.dark,
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Cereal-medium',
     paddingVertical: 10,
   },

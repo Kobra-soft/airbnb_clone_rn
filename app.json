@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/airbnb_icon_adaptive_icon.png",
+        "foregroundImage": "./assets/images/airbnb-logo_adaptive_icon1.png",
         "backgroundColor": "#ffffff"
       },
       "suppressMatchedInstanceWarnings": true
