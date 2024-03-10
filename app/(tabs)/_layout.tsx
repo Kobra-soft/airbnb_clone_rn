@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import Colors from "@/constants/Colors";
@@ -8,7 +7,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 
-const LayoutScreen = () => {
+const Layout = () => {
   return (
     <Tabs
       screenOptions={{
@@ -76,4 +75,4 @@ const LayoutScreen = () => {
   );
 };
 
-export default LayoutScreen;
+export default Layout;

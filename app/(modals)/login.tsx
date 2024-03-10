@@ -30,11 +30,12 @@ const LoginScreen = () => {
 
     try {
       const { createdSessionId, setActive } = await SelectedAuth();
-      console.log(" ~ file: login.tsx:31 ~ onSelectAuth ~ createSessionId", createdSessionId)
+      /* console.log(" ~ file: login.tsx:31 ~ onSelectAuth ~ createSessionId", createdSessionId) */
 
       if (createdSessionId) {
         setActive!({ session: createdSessionId})
-        router.navigate('(tabs)'); // Navigating to the home screen after successful authentication
+        /* router.back(); */
+        router.navigate('(tabs)'); // Navigate to the home screen after successful authentication
       } 
     }
     catch(err) {
