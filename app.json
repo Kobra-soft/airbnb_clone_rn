@@ -4,7 +4,7 @@
     "slug": "airbnb_clone_rn",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/airbnb_icon.png",
+    "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/airbnb-logo_adaptive_icon1.png",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "suppressMatchedInstanceWarnings": true
