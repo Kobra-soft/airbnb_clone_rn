@@ -10,6 +10,12 @@ import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
+import FilterIcon from "../assets/svgs/filter.svg";
+import SearchIcon1 from "../assets/svgs/search1.svg";
+import SearchIcon2 from "../assets/svgs/search2.svg";
+
+/* import { SvgXml } from 'react-native-svg'; */
+/* const filterSvgWithColor = filterSvg.replace('currentColor', '#000000'); */
 
 const categories = [
   {
@@ -49,7 +55,10 @@ const ExploreHeader = () => {
         <View style={styles.actionRow}>
           <Link href={"/(modals)/booking"} asChild>
             <TouchableOpacity style={styles.searchBtn}>
-              <Ionicons name="search" size={24} />
+              {/* <Ionicons name="search" size={24} /> */}
+
+              {/* <SearchIcon1 width={17} height={17} color={"#000000"} strokeWidth={"3"} /> */}
+              <SearchIcon1 width={20} height={20} color={"#222222"} strokeWidth={"0"}/>
 
               <View>
                 <Text
@@ -76,10 +85,14 @@ const ExploreHeader = () => {
           </Link>
 
           <TouchableOpacity
-            style={[styles.filterBtn, { transform: [{ rotate: "180deg" }] }]}
+            style={[styles.filterBtn, { transform: [{ rotate: "0deg" }] }]}
           >
             {/* <Ionicons name="options-outline" size={20} /> */}
-            <FontAwesome6 name="sliders" size={15} color="black" />
+            {/* <FontAwesome6 name="sliders" size={15} color="black" /> */}
+            {/* <FilterIcon width={15} height={15} stroke="#000000" /> */}
+            {/* <SvgXml xml={filterSvg} width="15" height="15" stroke="#000000" /> */}
+            {/* <SvgXml xml={filterSvgWithColor} width="15" height="15" /> */}
+            <FilterIcon width={17} height={17} color={"#222222"} strokeWidth={"3"} />
           </TouchableOpacity>
         </View>
       </View>
@@ -90,7 +103,7 @@ const ExploreHeader = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    height: 130,
+    height: 142,
     paddingTop: Platform.OS === "android" ? 8 : 0,
   },
   actionRow: {
@@ -103,9 +116,16 @@ const styles = StyleSheet.create({
   searchBtn: {
     backgroundColor: "#fff",
     flexDirection: "row",
+    
+    // padding top and bottom
+    paddingVertical: 10,
 
+    // moves search icon from the left
+    paddingHorizontal: 20,
+
+    // gap from search icon to text
     gap: 17,
-    padding: 14,
+
     alignItems: "center",
     width: "86.5%",
     borderWidth: StyleSheet.hairlineWidth,

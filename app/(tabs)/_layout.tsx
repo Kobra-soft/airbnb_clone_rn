@@ -6,6 +6,8 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import SearchIcon2 from "@/assets/svgs/search2.svg";
+import SearchIcon1 from "@/assets/svgs/search1.svg";
 
 const Layout = () => {
   return (
@@ -19,14 +21,14 @@ const Layout = () => {
       }}
     >
       <Tabs.Screen
-        name="index"
-        options={{
-          tabBarLabel: "Explore",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" size={size} color={color} />
-          ),
-        }}
-      />
+          name="index"
+          options={{
+            tabBarLabel: "Explore",
+            tabBarIcon: ({ color, size }) => (
+              <SearchIcon2 color={color}strokeWidth={"3"} fill={color} stroke={color} />
+            ),
+          }}
+        />
 
       <Tabs.Screen
         name="wishlists"
