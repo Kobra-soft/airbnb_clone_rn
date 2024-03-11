@@ -13,9 +13,8 @@ import { Link } from "expo-router";
 import FilterIcon from "../assets/svgs/filter.svg";
 import SearchIcon1 from "../assets/svgs/search1.svg";
 import SearchIcon2 from "../assets/svgs/search2.svg";
+import Colors from "@/constants/Colors";
 
-/* import { SvgXml } from 'react-native-svg'; */
-/* const filterSvgWithColor = filterSvg.replace('currentColor', '#000000'); */
 
 const categories = [
   {
@@ -55,18 +54,14 @@ const ExploreHeader = () => {
         <View style={styles.actionRow}>
           <Link href={"/(modals)/booking"} asChild>
             <TouchableOpacity style={styles.searchBtn}>
-              {/* <Ionicons name="search" size={24} /> */}
-
-              {/* <SearchIcon1 width={17} height={17} color={"#000000"} strokeWidth={"3"} /> */}
-              <SearchIcon1 width={20} height={20} color={"#222222"} strokeWidth={"0"}/>
-
+              <SearchIcon1 width={20} height={20} color={Colors.dark3} strokeWidth={"0"}/>
               <View>
                 <Text
                   style={{
                     marginBottom: 2,
                     fontSize: 14.0,
                     fontFamily: "Cereal-medium",
-                    color: "#222222",
+                    color: Colors.dark2,
                   }}
                 >
                   Where to?
@@ -75,7 +70,7 @@ const ExploreHeader = () => {
                   style={{
                     fontSize: 12.1,
                     fontFamily: "Cereal",
-                    color: "#717171",
+                    color: Colors.grey2,
                   }}
                 >
                   Anywhere · Any week · Add guests
@@ -83,16 +78,10 @@ const ExploreHeader = () => {
               </View>
             </TouchableOpacity>
           </Link>
-
           <TouchableOpacity
             style={[styles.filterBtn, { transform: [{ rotate: "0deg" }] }]}
           >
-            {/* <Ionicons name="options-outline" size={20} /> */}
-            {/* <FontAwesome6 name="sliders" size={15} color="black" /> */}
-            {/* <FilterIcon width={15} height={15} stroke="#000000" /> */}
-            {/* <SvgXml xml={filterSvg} width="15" height="15" stroke="#000000" /> */}
-            {/* <SvgXml xml={filterSvgWithColor} width="15" height="15" /> */}
-            <FilterIcon width={17} height={17} color={"#222222"} strokeWidth={"3"} />
+            <FilterIcon width={17} height={17} color={Colors.dark3} strokeWidth={"3"} />
           </TouchableOpacity>
         </View>
       </View>

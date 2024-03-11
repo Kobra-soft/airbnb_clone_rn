@@ -6,36 +6,62 @@ import {
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+
 import SearchIcon2 from "@/assets/svgs/search2.svg";
-import SearchIcon1 from "@/assets/svgs/search1.svg";
+import HeartIcon from "@/assets/svgs/heart.svg";
+import TripsIcon1 from "@/assets/svgs/trips.svg";
+import TripsIcon2 from "@/assets/svgs/trips2.svg";
+import InboxIcon from "@/assets/svgs/inbox.svg";
+import ProfileIcon from "@/assets/svgs/profile.svg";
+import { Text } from "react-native";
 
 const Layout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: Colors.grey2,
+        tabBarActiveTintColor: Colors.tabBarItems_colour,
         tabBarLabelStyle: {
           fontFamily: "Cereal",
           fontSize: 11,
         },
+        tabBarAllowFontScaling: true,
       }}
     >
-      <Tabs.Screen
+{/*       <Tabs.Screen
           name="index"
           options={{
             tabBarLabel: "Explore",
             tabBarIcon: ({ color, size }) => (
-              <SearchIcon2 color={color}strokeWidth={"3"} fill={color} stroke={color} />
+              <SearchIcon2 color={color} strokeWidth={"2"} fill={color} stroke={color} />
+            ),
+          }}
+        /> */}
+
+        <Tabs.Screen
+          name="index"
+          options={{
+            tabBarLabel: ({ focused, color }) => (
+              <Text style={{ fontFamily: focused ? "Cereal-bold" : "Cereal", fontSize: 11, color }}>
+                Explore
+              </Text>
+            ),
+            tabBarIcon: ({ focused, color, size }) => (
+              <SearchIcon2 color={color} strokeWidth={focused ? "3" : "2"} fill={color} stroke={color} />
             ),
           }}
         />
 
       <Tabs.Screen
-        name="wishlists"
-        options={{
-          tabBarLabel: "Wishlists",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="heart-outline" size={size} color={color} />
+          name="wishlists"
+          options={{
+            tabBarLabel: ({ focused, color }) => (
+              <Text style={{ fontFamily: focused ? "Cereal-bold" : "Cereal", fontSize: 11, color }}>
+                Wishlists
+              </Text>
+            ),
+          tabBarIcon: ({ focused, color, size }) => (
+            <HeartIcon color={color} strokeWidth={focused ? "3" : "2"} stroke={color} />
           ),
         }}
       />
@@ -43,9 +69,13 @@ const Layout = () => {
       <Tabs.Screen
         name="trips"
         options={{
-          tabBarLabel: "Trips",
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="airbnb" size={size} color={color} />
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{ fontFamily: focused ? "Cereal-bold" : "Cereal", fontSize: 11, color }}>
+                Trips
+              </Text>
+            ),
+          tabBarIcon: ({ focused, color, size }) => (
+            <TripsIcon2 color={color} strokeWidth={focused ? "3" : "2"} fill={color} width={23} height={22}/>
           ),
         }}
       />
@@ -53,13 +83,13 @@ const Layout = () => {
       <Tabs.Screen
         name="inbox"
         options={{
-          tabBarLabel: "Inbox",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="message-outline"
-              size={size}
-              color={color}
-            />
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{ fontFamily: focused ? "Cereal-bold" : "Cereal", fontSize: 11, color }}>
+                Inbox
+              </Text>
+            ),
+            tabBarIcon: ({ focused, color, size }) => (
+            <InboxIcon color={color} strokeWidth={focused ? "3" : "2"} fill={color} stroke={color} />
           ),
         }}
       />
@@ -67,9 +97,13 @@ const Layout = () => {
       <Tabs.Screen
         name="profile"
         options={{
-          tabBarLabel: "Profile",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle-outline" size={size} color={color} />
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{ fontFamily: focused ? "Cereal-bold" : "Cereal", fontSize: 11, color }}>
+                Profile
+              </Text>
+            ),
+          tabBarIcon: ({ focused, color, size }) => (
+            <ProfileIcon color={color} strokeWidth={focused ? "3" : "2"} fill={color} stroke={color} />
           ),
         }}
       />
