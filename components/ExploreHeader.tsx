@@ -4,8 +4,9 @@ import {
   TouchableOpacity,
   Text,
   Platform,
+  ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -48,6 +49,8 @@ const categories = [
 ];
 
 const ExploreHeader = () => {
+
+  const [activeIndex, setActiveIndex] = useState(0);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={styles.container}>
@@ -84,6 +87,28 @@ const ExploreHeader = () => {
             <FilterIcon width={17} height={17} color={Colors.dark3} strokeWidth={"3"} />
           </TouchableOpacity>
         </View>
+
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            alignItems: 'center',
+            gap: 20,
+            paddingHorizontal: 16,
+          }}>
+          {categories.map((item, index) => (
+            <TouchableOpacity key={index}
+            style={activeIndex === index ? styles.categoriesBtnActive : styles.categoriesBtn}
+            >
+              <MaterialIcons name={item.icon as any} size={24}
+              />
+              <Text style={activeIndex === index ? styles.categoryTextActive : styles.categoryText}>>
+                {item.name}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
       </View>
     </SafeAreaView>
   );
@@ -136,6 +161,30 @@ const styles = StyleSheet.create({
     borderRadius: 24,
 
     marginLeft: 10,
+  },
+  categoryText: {
+    fontSize: 14,
+    fontFamily: 'Cereal',
+    color: Colors.grey,
+  },
+  categoryTextActive: {
+    fontSize: 14,
+    fontFamily: 'Cereal-medium',
+    color: '#000',
+  },
+  categoriesBtn: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 8,
+  },
+  categoriesBtnActive: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomColor: '#000',
+    borderBottomWidth: 2,
+    paddingBottom: 8,
   },
 });
 
