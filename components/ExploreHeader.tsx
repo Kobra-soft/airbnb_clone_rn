@@ -15,7 +15,7 @@ import FilterIcon from "../assets/svgs/filter.svg";
 import SearchIcon1 from "../assets/svgs/search1.svg";
 import SearchIcon2 from "../assets/svgs/search2.svg";
 import Colors from "@/constants/Colors";
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 const categories = [
 /*   {
@@ -28,11 +28,11 @@ const categories = [
   },
 /*   {
     name: "Cabins",
-    icon: "house-siding",
+    icon: "cabin",
   }, */
   {
     name: "Top of the world",
-    icon: "house-siding",
+    icon: "landscape",
   },
 /*   {
     name: "Trending",
@@ -40,11 +40,15 @@ const categories = [
   }, */
   {
     name: "Historical homes",
-    icon: "local-fire-department",
+    icon: "castle",
   },
     {
     name: "Caves",
-    icon: "local-fire-department",
+    icon: "house-siding",
+  },
+  {
+    name: "Cabins",
+    icon: "cabin",
   },
   {
     name: "Beachfront",
@@ -106,21 +110,26 @@ const ExploreHeader = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </SafeAreaView>      
 
-    <ScrollView
-      style={{ backgroundColor:"#ffffff", paddingTop: 10, borderBottomColor: Colors.grey2, borderBottomWidth: 0.5}}
-      horizontal
-      showsHorizontalScrollIndicator={false}q
-      contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}
-    >
+    <View style={{ position: 'relative' }}>
+<ScrollView
+  style={{
+    backgroundColor:"#ffffff",
+    paddingTop: 10,
+    zIndex: 0,
+  }}
+  horizontal
+  showsHorizontalScrollIndicator={false}
+  contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}
+>
       {categories.map((item, index) => (
         <TouchableOpacity
           key={index}
           style={styles.categoriesBtn}
           onPress={() => setActiveIndex(index)}
         >
-          <MaterialIcons name={item.icon as any} size={24} color={"#888888"}/>
+          <MaterialIcons name={item.icon as any} size={24} color={activeIndex === index ? '#000' : '#727272'} />
           <View style={activeIndex === index ? styles.categoryTextContainerActive : styles.categoryTextContainer}>
             <Text style={activeIndex === index ? styles.categoryTextActive : styles.categoryText}>
               {item.name}
@@ -129,6 +138,18 @@ const ExploreHeader = () => {
         </TouchableOpacity>
       ))}
     </ScrollView>
+
+    <LinearGradient
+  colors={['rgba(0,0,0,0.1)', 'transparent']}
+  style={{
+    position: 'absolute',
+    width: '100%',
+    height: 4,
+    bottom: -4,
+    zIndex: 1,
+  }}
+/>    
+</View>
     </View>
   );
 };
@@ -184,7 +205,7 @@ const styles = StyleSheet.create({
   categoryText: {
     fontSize: 12,
     fontFamily: 'Cereal-medium',
-    color: "#A2A0A2",
+    color: "#858585",
     
   },
   categoryTextActive: {
@@ -195,9 +216,15 @@ const styles = StyleSheet.create({
   categoriesBtn: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingLeft: 13.5,
+    /* paddingLeft: 13.5, */
     /* paddingHorizontal: 5, */
-    
+    /* backgroundColor: "#ff0000", */
+    /* borderWidth: 0.5, */
+    minWidth: 75, // adjust this value as needed
+    paddingHorizontal: 10,
+    marginLeft: 0,
+    left: 4,
+
   },
 
 

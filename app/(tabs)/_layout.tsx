@@ -13,7 +13,7 @@ import TripsIcon1 from "@/assets/svgs/trips.svg";
 import TripsIcon2 from "@/assets/svgs/trips2.svg";
 import InboxIcon from "@/assets/svgs/inbox.svg";
 import ProfileIcon from "@/assets/svgs/profile.svg";
-import { Text } from "react-native";
+import { Platform, StyleSheet, Text } from "react-native";
 
 const Layout = () => {
   return (
@@ -26,18 +26,9 @@ const Layout = () => {
           fontSize: 11,
         },
         tabBarAllowFontScaling: true,
+        tabBarStyle: Platform.OS === 'android' ? styles.androidTabBar : {},
       }}
     >
-{/*       <Tabs.Screen
-          name="index"
-          options={{
-            tabBarLabel: "Explore",
-            tabBarIcon: ({ color, size }) => (
-              <SearchIcon2 color={color} strokeWidth={"2"} fill={color} stroke={color} />
-            ),
-          }}
-        /> */}
-
         <Tabs.Screen
           name="index"
           options={{
@@ -110,5 +101,13 @@ const Layout = () => {
     </Tabs>
   );
 };
+
+const styles = StyleSheet.create({
+  androidTabBar: {
+    height: 55,
+    paddingBottom: 7,
+    paddingTop: 4,
+  },
+});
 
 export default Layout;
