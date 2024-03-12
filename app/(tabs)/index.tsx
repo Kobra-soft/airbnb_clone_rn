@@ -13,7 +13,9 @@ const IndexScreen = () => {
       <Stack.Screen options={{
         header: () => <ExploreHeader />,
       }} />
-      <Listings />
+
+      {/* <Listings /> */}
+
     </View>
     </SafeAreaProvider>
   );

@@ -18,25 +18,33 @@ import Colors from "@/constants/Colors";
 
 
 const categories = [
-  {
+/*   {
     name: "Tiny homes",
     icon: "home",
-  },
+  }, */
   {
+    name: "Earth homes",
+    icon: "home",
+  },
+/*   {
     name: "Cabins",
     icon: "house-siding",
-  },
+  }, */
   {
+    name: "Top of the world",
+    icon: "house-siding",
+  },
+/*   {
     name: "Trending",
     icon: "local-fire-department",
-  },
+  }, */
   {
-    name: "Play",
-    icon: "videogame-asset",
+    name: "Historical homes",
+    icon: "local-fire-department",
   },
-  {
-    name: "City",
-    icon: "apartment",
+    {
+    name: "Caves",
+    icon: "local-fire-department",
   },
   {
     name: "Beachfront",
@@ -46,13 +54,23 @@ const categories = [
     name: "Countryside",
     icon: "nature-people",
   },
+  {
+    name: "Play",
+    icon: "videogame-asset",
+  },
+  {
+    name: "City",
+    icon: "apartment",
+  },
 ];
 
 const ExploreHeader = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+
+    <View style={{ backgroundColor: "#000000"}}>
+    <SafeAreaView style={{ backgroundColor: "#ffffff" }}>
       <View style={styles.container}>
         <View style={styles.actionRow}>
           <Link href={"/(modals)/booking"} asChild>
@@ -87,37 +105,39 @@ const ExploreHeader = () => {
             <FilterIcon width={17} height={17} color={Colors.dark3} strokeWidth={"3"} />
           </TouchableOpacity>
         </View>
-
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{
-            alignItems: 'center',
-            gap: 20,
-            paddingHorizontal: 16,
-          }}>
-          {categories.map((item, index) => (
-            <TouchableOpacity key={index}
-            style={activeIndex === index ? styles.categoriesBtnActive : styles.categoriesBtn}
-            >
-              <MaterialIcons name={item.icon as any} size={24}
-              />
-              <Text style={activeIndex === index ? styles.categoryTextActive : styles.categoryText}>>
-                {item.name}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-
       </View>
     </SafeAreaView>
+
+    <ScrollView
+      style={{ backgroundColor:"#ffffff", paddingTop: 10, borderBottomColor: Colors.grey2, borderBottomWidth: 0.5}}
+      horizontal
+      showsHorizontalScrollIndicator={false}q
+      contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}
+    >
+      {categories.map((item, index) => (
+        <TouchableOpacity
+          key={index}
+          style={styles.categoriesBtn}
+          onPress={() => setActiveIndex(index)}
+        >
+          <MaterialIcons name={item.icon as any} size={24} color={"#888888"}/>
+          <View style={activeIndex === index ? styles.categoryTextContainerActive : styles.categoryTextContainer}>
+            <Text style={activeIndex === index ? styles.categoryTextActive : styles.categoryText}>
+              {item.name}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      ))}
+    </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    height: 142,
+    /* height: 142, */
+    height: Platform.OS === 'ios' ? 20 : 69, // Adjust the height based on the platform
     paddingTop: Platform.OS === "android" ? 8 : 0,
   },
   actionRow: {
@@ -130,16 +150,12 @@ const styles = StyleSheet.create({
   searchBtn: {
     backgroundColor: "#fff",
     flexDirection: "row",
-    
     // padding top and bottom
     paddingVertical: 10,
-
     // moves search icon from the left
     paddingHorizontal: 20,
-
     // gap from search icon to text
     gap: 17,
-
     alignItems: "center",
     width: "86.5%",
     borderWidth: StyleSheet.hairlineWidth,
@@ -154,37 +170,46 @@ const styles = StyleSheet.create({
       height: 1,
     },
   },
+
+  
   filterBtn: {
     padding: 11,
     borderWidth: 1,
     borderColor: "#A2A0A2",
     borderRadius: 24,
-
     marginLeft: 10,
   },
+
+  
   categoryText: {
-    fontSize: 14,
-    fontFamily: 'Cereal',
-    color: Colors.grey,
+    fontSize: 12,
+    fontFamily: 'Cereal-medium',
+    color: "#A2A0A2",
+    
   },
   categoryTextActive: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: 'Cereal-medium',
-    color: '#000',
+    color: "#000",
   },
   categoriesBtn: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 8,
+    paddingLeft: 13.5,
+    /* paddingHorizontal: 5, */
+    
   },
-  categoriesBtnActive: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+
+
+  categoryTextContainer: {
+    paddingTop: 5,
+    paddingBottom: 15,
+  },
+  categoryTextContainerActive: {
+    paddingTop: 5,
+    paddingBottom: 15,
     borderBottomColor: '#000',
     borderBottomWidth: 2,
-    paddingBottom: 8,
   },
 });
 
