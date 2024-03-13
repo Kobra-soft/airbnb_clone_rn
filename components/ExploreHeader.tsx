@@ -5,6 +5,7 @@ import {
   Text,
   Platform,
   ScrollView,
+  Image,
 } from "react-native";
 import React, { useState } from "react";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
@@ -66,6 +67,66 @@ const categories = [
     name: "City",
     icon: "apartment",
   },
+];
+
+const categories2 = [
+  /*   {
+    name: "Tiny homes",
+    icon: require("../assets/images/EarthHomes.jpg"),
+  }, */
+  {
+    name: "Earth homes",
+    icon: require("../assets/images/EarthHomes.jpg"),
+  },
+  /*   {
+    name: "Cabins",
+    icon: require("../assets/images/EarthHomes.jpg"),
+  }, */
+  {
+    name: "Top of the world",
+    icon: require("../assets/images/TopWorld.jpg"),
+  },
+  /*   {
+    name: "Trending",
+    icon: require("../assets/images/EarthHomes.jpg"),
+  }, */
+  {
+    name: "Historical homes",
+    icon: require("../assets/images/HistoricalHomes.jpg"),
+  },
+  {
+    name: "Caves",
+   icon: require("../assets/images/Caves.jpg"),
+  },
+  {
+    name: "Cabins",
+    icon: require("../assets/images/Cabins.jpg"),
+  },
+  {
+    name: "Beachfront",
+    icon: require("../assets/images/BeachFront.jpg"),
+  },
+  {
+    name: "Countryside",
+    icon: require("../assets/images/CountrySide.jpg"),
+  },
+  {
+    name: "Play",
+    icon: require("../assets/images/Play.jpg"),
+  },
+/*   {
+    name: "City",
+    icon: require("../assets/images/IconicCities.jpg"),
+  }, */
+  {
+    name: "Iconic cities",
+    icon: require("../assets/images/IconicCities.jpg"),
+  },
+  {
+    name: "Castles",
+    icon: require("../assets/images/Play.jpg"),
+  },
+
 ];
 
 const ExploreHeader = () => {
@@ -147,6 +208,67 @@ const ExploreHeader = () => {
                 size={24}
                 color={activeIndex === index ? "#000" : "#727272"}
               />
+              <View
+                style={
+                  activeIndex === index
+                    ? styles.categoryTextContainerActive
+                    : styles.categoryTextContainer
+                }
+              >
+                <Text
+                  style={
+                    activeIndex === index
+                      ? styles.categoryTextActive
+                      : styles.categoryText
+                  }
+                >
+                  {item.name}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
+        <LinearGradient
+          colors={["rgba(0,0,0,0.1)", "transparent"]}
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: 4,
+            bottom: -4,
+            zIndex: 1,
+          }}
+        />
+      </View>
+
+      <View style={{ position: "relative" }}>
+        <ScrollView
+          style={{
+            backgroundColor: "#ffffff",
+            paddingTop: 10,
+            zIndex: 0,
+          }}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingHorizontal: 10,
+          }}
+        >
+          {categories2.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.categoriesBtn}
+              onPress={() => setActiveIndex(index)}
+            >
+              {/* <MaterialIcons
+                name={item.icon as any}
+                size={24}
+                color={activeIndex === index ? "#000" : "#727272"}
+              /> */}
+              <Image source={item.icon} style={{ width: 24, height: 24 }} />
               <View
                 style={
                   activeIndex === index
