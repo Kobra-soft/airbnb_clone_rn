@@ -15,10 +15,10 @@ import FilterIcon from "../assets/svgs/filter.svg";
 import SearchIcon1 from "../assets/svgs/search1.svg";
 import SearchIcon2 from "../assets/svgs/search2.svg";
 import Colors from "@/constants/Colors";
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 
 const categories = [
-/*   {
+  /*   {
     name: "Tiny homes",
     icon: "home",
   }, */
@@ -26,7 +26,7 @@ const categories = [
     name: "Earth homes",
     icon: "home",
   },
-/*   {
+  /*   {
     name: "Cabins",
     icon: "cabin",
   }, */
@@ -34,7 +34,7 @@ const categories = [
     name: "Top of the world",
     icon: "landscape",
   },
-/*   {
+  /*   {
     name: "Trending",
     icon: "local-fire-department",
   }, */
@@ -42,7 +42,7 @@ const categories = [
     name: "Historical homes",
     icon: "castle",
   },
-    {
+  {
     name: "Caves",
     icon: "house-siding",
   },
@@ -69,87 +69,116 @@ const categories = [
 ];
 
 const ExploreHeader = () => {
-
   const [activeIndex, setActiveIndex] = useState(0);
   return (
+    <View style={{ backgroundColor: "#000000" }}>
+      <SafeAreaView style={{ backgroundColor: "#ffffff" }}>
+        <View style={styles.container}>
+          <View style={styles.actionRow}>
+            <Link href={"/(modals)/booking"} asChild>
+              <TouchableOpacity style={styles.searchBtn}>
+                <SearchIcon1
+                  width={20}
+                  height={20}
+                  color={Colors.dark3}
+                  strokeWidth={"0"}
+                />
+                <View>
+                  <Text
+                    style={{
+                      marginBottom: 2,
+                      fontSize: 14.0,
+                      fontFamily: "Cereal-medium",
+                      color: Colors.dark2,
+                    }}
+                  >
+                    Where to?
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 12.1,
+                      fontFamily: "Cereal",
+                      color: Colors.grey2,
+                    }}
+                  >
+                    Anywhere · Any week · Add guests
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Link>
+            <TouchableOpacity
+              style={[styles.filterBtn, { transform: [{ rotate: "0deg" }] }]}
+            >
+              <FilterIcon
+                width={17}
+                height={17}
+                color={Colors.dark3}
+                strokeWidth={"3"}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </SafeAreaView>
 
-    <View style={{ backgroundColor: "#000000"}}>
-    <SafeAreaView style={{ backgroundColor: "#ffffff" }}>
-      <View style={styles.container}>
-        <View style={styles.actionRow}>
-          <Link href={"/(modals)/booking"} asChild>
-            <TouchableOpacity style={styles.searchBtn}>
-              <SearchIcon1 width={20} height={20} color={Colors.dark3} strokeWidth={"0"}/>
-              <View>
+      <View style={{ position: "relative" }}>
+        <ScrollView
+          style={{
+            backgroundColor: "#ffffff",
+            paddingTop: 10,
+            zIndex: 0,
+          }}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingHorizontal: 10,
+          }}
+        >
+          {categories.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.categoriesBtn}
+              onPress={() => setActiveIndex(index)}
+            >
+              <MaterialIcons
+                name={item.icon as any}
+                size={24}
+                color={activeIndex === index ? "#000" : "#727272"}
+              />
+              <View
+                style={
+                  activeIndex === index
+                    ? styles.categoryTextContainerActive
+                    : styles.categoryTextContainer
+                }
+              >
                 <Text
-                  style={{
-                    marginBottom: 2,
-                    fontSize: 14.0,
-                    fontFamily: "Cereal-medium",
-                    color: Colors.dark2,
-                  }}
+                  style={
+                    activeIndex === index
+                      ? styles.categoryTextActive
+                      : styles.categoryText
+                  }
                 >
-                  Where to?
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 12.1,
-                    fontFamily: "Cereal",
-                    color: Colors.grey2,
-                  }}
-                >
-                  Anywhere · Any week · Add guests
+                  {item.name}
                 </Text>
               </View>
             </TouchableOpacity>
-          </Link>
-          <TouchableOpacity
-            style={[styles.filterBtn, { transform: [{ rotate: "0deg" }] }]}
-          >
-            <FilterIcon width={17} height={17} color={Colors.dark3} strokeWidth={"3"} />
-          </TouchableOpacity>
-        </View>
+          ))}
+        </ScrollView>
+
+        <LinearGradient
+          colors={["rgba(0,0,0,0.1)", "transparent"]}
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: 4,
+            bottom: -4,
+            zIndex: 1,
+          }}
+        />
       </View>
-    </SafeAreaView>      
-
-    <View style={{ position: 'relative' }}>
-<ScrollView
-  style={{
-    backgroundColor:"#ffffff",
-    paddingTop: 10,
-    zIndex: 0,
-  }}
-  horizontal
-  showsHorizontalScrollIndicator={false}
-  contentContainerStyle={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}
->
-      {categories.map((item, index) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.categoriesBtn}
-          onPress={() => setActiveIndex(index)}
-        >
-          <MaterialIcons name={item.icon as any} size={24} color={activeIndex === index ? '#000' : '#727272'} />
-          <View style={activeIndex === index ? styles.categoryTextContainerActive : styles.categoryTextContainer}>
-            <Text style={activeIndex === index ? styles.categoryTextActive : styles.categoryText}>
-              {item.name}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
-
-    <LinearGradient
-  colors={['rgba(0,0,0,0.1)', 'transparent']}
-  style={{
-    position: 'absolute',
-    width: '100%',
-    height: 4,
-    bottom: -4,
-    zIndex: 1,
-  }}
-/>    
-</View>
     </View>
   );
 };
@@ -158,7 +187,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     /* height: 142, */
-    height: Platform.OS === 'ios' ? 20 : 69, // Adjust the height based on the platform
+    height: Platform.OS === "ios" ? 20 : 69,
     paddingTop: Platform.OS === "android" ? 8 : 0,
   },
   actionRow: {
@@ -182,7 +211,9 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "#c2c2c2",
     borderRadius: 30,
-    elevation: 2,
+
+    elevation: 7,
+
     shadowColor: "#000",
     shadowOpacity: 0.12,
     shadowRadius: 8,
@@ -192,7 +223,6 @@ const styles = StyleSheet.create({
     },
   },
 
-  
   filterBtn: {
     padding: 11,
     borderWidth: 1,
@@ -200,22 +230,19 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     marginLeft: 10,
   },
-
-  
   categoryText: {
     fontSize: 12,
-    fontFamily: 'Cereal-medium',
+    fontFamily: "Cereal-medium",
     color: "#858585",
-    
   },
   categoryTextActive: {
     fontSize: 12,
-    fontFamily: 'Cereal-medium',
+    fontFamily: "Cereal-medium",
     color: "#000",
   },
   categoriesBtn: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     /* paddingLeft: 13.5, */
     /* paddingHorizontal: 5, */
     /* backgroundColor: "#ff0000", */
@@ -224,10 +251,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginLeft: 0,
     left: 4,
-
   },
-
-
   categoryTextContainer: {
     paddingTop: 5,
     paddingBottom: 15,
@@ -235,7 +259,7 @@ const styles = StyleSheet.create({
   categoryTextContainerActive: {
     paddingTop: 5,
     paddingBottom: 15,
-    borderBottomColor: '#000',
+    borderBottomColor: "#000",
     borderBottomWidth: 2,
   },
 });
