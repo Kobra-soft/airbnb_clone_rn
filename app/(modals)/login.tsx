@@ -7,6 +7,11 @@ import { AntDesign, Feather, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useOAuth } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 
+import PhoneIcon from "@/assets/svgs/Phone_Icon.svg";
+import FacebookIcon from "@/assets/svgs/icons8-facebook.svg";
+import GoogleIcon from "@/assets/svgs/icons8-google.svg";
+import AppleIcon from "@/assets/svgs/icons8-apple.svg";
+
 enum Strategy {
   Facebook = 'oauth_facebook',
   Google = 'oauth_google',
@@ -73,19 +78,23 @@ const LoginScreen = () => {
           </View>
           <View style={{ gap: 16}}>
             <TouchableOpacity style={styles.btnOutline}>
-              <Feather name="smartphone" size={24} color={"#505050"} style={defaultStyles.btnIcon}  />
+              {/* <Feather name="smartphone" size={24} color={"#505050"} style={defaultStyles.btnIcon}  /> */}
+              <PhoneIcon width={24} height={24} style={defaultStyles.btnIcon} />
               <Text style={styles.btnOutlineText}>Continue with Phone</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Facebook)}>
-              <FontAwesome5 name="facebook" size={24} color={"#000000"} style={defaultStyles.btnIcon}  />
+              {/* <FontAwesome5 name="facebook" size={24} color={"#000000"} style={defaultStyles.btnIcon}  /> */}
+              <FacebookIcon width={24} height={24} style={defaultStyles.btnIcon} />
               <Text style={styles.btnOutlineText}>Continue with Facebook</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Google)}>
-              <Ionicons name="logo-google" size={24} color={"#000000"} style={defaultStyles.btnIcon}  />
-              <Text style={styles.btnOutlineText}>Continue with Google</Text>
+              {/* <Ionicons name="logo-google" size={24} color={"#000000"} style={defaultStyles.btnIcon}  /> */}
+              <GoogleIcon width={24} height={24} style={defaultStyles.btnIcon} />
+             <Text style={styles.btnOutlineText}>Continue with Google</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.btnOutline} onPress={() => onSelectAuth(Strategy.Apple)}>
-              <AntDesign name="apple1" size={24} color={"#000000"} style={defaultStyles.btnIcon}  />
+              {/* <AntDesign name="apple1" size={24} color={"#000000"} style={defaultStyles.btnIcon}  /> */}
+              <AppleIcon width={24} height={24} style={defaultStyles.btnIcon} />
               <Text style={styles.btnOutlineText}>Continue with Apple</Text>
             </TouchableOpacity>
           </View>
