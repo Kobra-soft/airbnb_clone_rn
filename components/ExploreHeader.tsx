@@ -8,13 +8,11 @@ import {
   Image,
 } from "react-native";
 import React, { useState } from "react";
-import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import FilterIcon from "../assets/svgs/filter.svg";
 import SearchIcon1 from "../assets/svgs/search1.svg";
-import SearchIcon2 from "../assets/svgs/search2.svg";
 import Colors from "@/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -26,6 +24,7 @@ const categories = [
   {
     name: "Earth homes",
     icon: "home",
+
   },
   /*   {
     name: "Cabins",
@@ -72,59 +71,73 @@ const categories = [
 const categories2 = [
   /*   {
     name: "Tiny homes",
-    icon: require("../assets/images/EarthHomes.jpg"),
+    icon: require("../assets/images/EarthHomes2.png"),
+    selectedIcon: require("../assets/images/EarthHomes.jpg"),
   }, */
   {
     name: "Earth homes",
-    icon: require("../assets/images/EarthHomes.jpg"),
+    icon: require("../assets/images/EarthHomes2.png"),
+    selectedIcon: require("../assets/images/EarthHomes.jpg"),
   },
   /*   {
     name: "Cabins",
-    icon: require("../assets/images/EarthHomes.jpg"),
+    icon: require("../assets/images/EarthHomes2.png"),
+    selectedIcon: require("../assets/images/EarthHomes.jpg"),
   }, */
   {
     name: "Top of the world",
-    icon: require("../assets/images/TopWorld.jpg"),
+    icon: require("../assets/images/TopWorld2.png"),
+    selectedIcon: require("../assets/images/TopWorld.jpg"),
   },
   /*   {
     name: "Trending",
-    icon: require("../assets/images/EarthHomes.jpg"),
+    icon: require("../assets/images/EarthHomes2.png"),
+    selectedIcon: require("../assets/images/EarthHomes.jpg"),
   }, */
   {
     name: "Historical homes",
-    icon: require("../assets/images/HistoricalHomes.jpg"),
+    icon: require("../assets/images/HistoricalHomes2.png"),
+    selectedIcon: require("../assets/images/HistoricalHomes.jpg"),
   },
   {
     name: "Caves",
-   icon: require("../assets/images/Caves.jpg"),
+    icon: require("../assets/images/Caves2.png"),
+    selectedIcon: require("../assets/images/Caves.jpg"),
   },
   {
     name: "Cabins",
-    icon: require("../assets/images/Cabins.jpg"),
+    icon: require("../assets/images/Cabins2.png"),
+    selectedIcon: require("../assets/images/Cabins.jpg"),
   },
   {
     name: "Beachfront",
-    icon: require("../assets/images/BeachFront.jpg"),
+    icon: require("../assets/images/BeachFront2.png"),
+    selectedIcon: require("../assets/images/BeachFront.jpg"),
   },
   {
     name: "Countryside",
-    icon: require("../assets/images/CountrySide.jpg"),
+    icon: require("../assets/images/CountrySide2.png"),
+    selectedIcon: require("../assets/images/CountrySide.jpg"),
   },
   {
     name: "Play",
-    icon: require("../assets/images/Play.jpg"),
+    icon: require("../assets/images/Play2.png"),
+    selectedIcon: require("../assets/images/Play.jpg"),
   },
 /*   {
     name: "City",
-    icon: require("../assets/images/IconicCities.jpg"),
+    icon: require("../assets/images/IconicCities2.png"),
+    selectedIcon: require("../assets/images/IconicCities.jpg"),
   }, */
   {
     name: "Iconic cities",
-    icon: require("../assets/images/IconicCities.jpg"),
+    icon: require("../assets/images/IconicCities2.png"),
+    selectedIcon: require("../assets/images/IconicCities.jpg"),
   },
   {
-    name: "Castles",
-    icon: require("../assets/images/Play.jpg"),
+    name: "OMG",
+    icon: require("../assets/images/Omg2.png"),
+    selectedIcon: require("../assets/images/Omg.jpg"),
   },
 
 ];
@@ -181,7 +194,8 @@ const ExploreHeader = () => {
         </View>
       </SafeAreaView>
 
-      <View style={{ position: "relative" }}>
+      {/* Old ScrollView Categories */}
+      {/* <View style={{ position: "relative" }}>
         <ScrollView
           style={{
             backgroundColor: "#ffffff",
@@ -239,8 +253,11 @@ const ExploreHeader = () => {
             zIndex: 1,
           }}
         />
-      </View>
+      </View> */}
 
+     {/*  NEW ScrollView Categories
+      / Updated to add Official Airbnb Icons 
+      / JPEG (92 X 92) icons */}
       <View style={{ position: "relative" }}>
         <ScrollView
           style={{
@@ -263,12 +280,7 @@ const ExploreHeader = () => {
               style={styles.categoriesBtn}
               onPress={() => setActiveIndex(index)}
             >
-              {/* <MaterialIcons
-                name={item.icon as any}
-                size={24}
-                color={activeIndex === index ? "#000" : "#727272"}
-              /> */}
-              <Image source={item.icon} style={{ width: 24, height: 24 }} />
+              <Image source={activeIndex === index ? item.selectedIcon : item.icon} style={{ width: 24, height: 24 }} />
               <View
                 style={
                   activeIndex === index
