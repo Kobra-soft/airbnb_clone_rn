@@ -5,6 +5,7 @@ import { useNavigation, Link } from "expo-router";
 import { defaultStyles } from "@/constants/Styles";
 import Colors from "@/constants/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
+import ProfileNavigationItemComponent from "@/components/ProfileNavigationItemComponent";
 
 const ProfileScreen = () => {
   const { signOut, isSignedIn } = useAuth();
@@ -46,7 +47,7 @@ const ProfileScreen = () => {
           </TouchableOpacity>
         </View>
         <View
-          style={{ flexDirection: "row", justifyContent: "flex-start", gap: 4 }}
+          style={{ flexDirection: "row", justifyContent: "flex-start", gap: 4, paddingBottom:22 }}
         >
           <Text style={[
                   defaultStyles.textSubHeadings3_mini,
@@ -73,10 +74,18 @@ const ProfileScreen = () => {
               </Text>
             </Link>
           </TouchableOpacity>
-        </View>
+        </View>  
 
+<View>
+  <ProfileNavigationItemComponent icon="settings-outline" text="Settings" />
+  <ProfileNavigationItemComponent icon="accessibility-outline" text="Accessibility" />
+  <ProfileNavigationItemComponent icon="information-circle-outline" text="Learn about hosting" />
+  <ProfileNavigationItemComponent icon="help-circle-outline" text="Get help" />
+  <ProfileNavigationItemComponent icon="document-text-outline" text="Terms of Service" />
+  <ProfileNavigationItemComponent icon="shield-checkmark-outline" text="Privacy Policy" />
+  <ProfileNavigationItemComponent icon="code-slash-outline" text="Open source licences" />
+</View>
 
-        
       </View>
     </SafeAreaView>
   );
