@@ -32,6 +32,7 @@ const Layout = () => {
         <Tabs.Screen
           name="index"
           options={{
+            headerShown: true, // this line shows the header
             tabBarLabel: ({ focused, color }) => (
               <Text style={{ fontFamily: focused ? "Cereal-bold" : "Cereal", fontSize: 11, color }}>
                 Explore
@@ -46,6 +47,7 @@ const Layout = () => {
       <Tabs.Screen
           name="wishlists"
           options={{
+            headerShown: false, // this line hides the header
             tabBarLabel: ({ focused, color }) => (
               <Text style={{ fontFamily: focused ? "Cereal-bold" : "Cereal", fontSize: 11, color }}>
                 Wishlists
@@ -60,6 +62,7 @@ const Layout = () => {
       <Tabs.Screen
         name="trips"
         options={{
+          headerShown: false, // this line hides the header
           tabBarLabel: ({ focused, color }) => (
             <Text style={{ fontFamily: focused ? "Cereal-bold" : "Cereal", fontSize: 11, color }}>
                 Trips
@@ -74,6 +77,7 @@ const Layout = () => {
       <Tabs.Screen
         name="inbox"
         options={{
+          headerShown: false, // this line hides the header
           tabBarLabel: ({ focused, color }) => (
             <Text style={{ fontFamily: focused ? "Cereal-bold" : "Cereal", fontSize: 11, color }}>
                 Inbox
@@ -88,6 +92,7 @@ const Layout = () => {
       <Tabs.Screen
         name="profile"
         options={{
+          headerShown: false, // this line hides the header
           tabBarLabel: ({ focused, color }) => (
             <Text style={{ fontFamily: focused ? "Cereal-bold" : "Cereal", fontSize: 11, color }}>
                 Profile
