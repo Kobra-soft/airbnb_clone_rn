@@ -50,6 +50,9 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
+      <View style={{
+          paddingTop: 97,
+        }}>
       <Text style={defaultStyles.textHeadings}>Log in or sign up to Airbnb</Text>
         <TextInput 
           autoCapitalize="none"
@@ -97,6 +100,7 @@ const LoginScreen = () => {
               <AppleIcon width={24} height={24} style={defaultStyles.btnIcon} />
               <Text style={styles.btnOutlineText}>Continue with Apple</Text>
             </TouchableOpacity>
+          </View>
           </View>
     </View>
   );

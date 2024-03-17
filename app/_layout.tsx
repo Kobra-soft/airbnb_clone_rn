@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { LogBox, TouchableOpacity } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
+import CrossIcon from "@/assets/svgs/cross.svg";
 
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
@@ -110,6 +111,7 @@ function RootLayoutNav() {
       <Stack.Screen
         name="(modals)/login"
         options={{
+          headerShown: false,
           title: "Login",
           headerTitleStyle: {
             fontFamily: "Cereal-medium",
@@ -117,7 +119,8 @@ function RootLayoutNav() {
           presentation: "modal",
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={28} />
+              {/* <Ionicons name="close-outline" size={28} /> */}
+              <CrossIcon width={24} height={24} color={"#000000"}/>
             </TouchableOpacity>
           ),
         }}

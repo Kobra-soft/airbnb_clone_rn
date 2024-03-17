@@ -126,9 +126,6 @@ const ProfileScreen = () => {
 
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            gap: 4,
             paddingTop: 13,
           }}
         >
@@ -144,7 +141,6 @@ const ProfileScreen = () => {
             Version 24.10 (28002967)
           </Text>
         </View>
-
       </View>
     </SafeAreaView>
   );
