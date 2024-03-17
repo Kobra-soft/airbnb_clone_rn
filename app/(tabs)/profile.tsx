@@ -6,6 +6,14 @@ import { defaultStyles } from "@/constants/Styles";
 import Colors from "@/constants/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileNavigationItemComponent from "@/components/ProfileNavigationItemComponent";
+import CrossIcon from "@/assets/svgs/cross.svg";
+import HelpIcon from "@/assets/svgs/help.svg";
+
+interface Props {
+  icon: string | React.ReactNode;
+  text: string;
+  size?: number;
+}
 
 const ProfileScreen = () => {
   const { signOut, isSignedIn } = useAuth();
@@ -47,15 +55,22 @@ const ProfileScreen = () => {
           </TouchableOpacity>
         </View>
         <View
-          style={{ flexDirection: "row", justifyContent: "flex-start", gap: 4, paddingBottom:22 }}
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            gap: 4,
+            paddingBottom: 22,
+          }}
         >
-          <Text style={[
-                  defaultStyles.textSubHeadings3_mini,
-                  {
-                    color: Colors.dark,
-                    fontFamily: "Cereal",
-                  },
-                ]}>
+          <Text
+            style={[
+              defaultStyles.textSubHeadings3_mini,
+              {
+                color: Colors.dark,
+                fontFamily: "Cereal",
+              },
+            ]}
+          >
             Don't have an account?
           </Text>
           <TouchableOpacity style={defaultStyles.textSubHeadings3_mini}>
@@ -74,17 +89,61 @@ const ProfileScreen = () => {
               </Text>
             </Link>
           </TouchableOpacity>
-        </View>  
+        </View>
 
-<View>
-  <ProfileNavigationItemComponent icon="settings-outline" text="Settings" />
-  <ProfileNavigationItemComponent icon="accessibility-outline" text="Accessibility" />
-  <ProfileNavigationItemComponent icon="information-circle-outline" text="Learn about hosting" />
-  <ProfileNavigationItemComponent icon="help-circle-outline" text="Get help" />
-  <ProfileNavigationItemComponent icon="document-text-outline" text="Terms of Service" />
-  <ProfileNavigationItemComponent icon="shield-checkmark-outline" text="Privacy Policy" />
-  <ProfileNavigationItemComponent icon="code-slash-outline" text="Open source licences" />
-</View>
+        <View>
+          <ProfileNavigationItemComponent
+            icon="settings-outline"
+            text="Settings"
+          />
+          <ProfileNavigationItemComponent
+            icon="accessibility-outline"
+            text="Accessibility"
+          />
+          <ProfileNavigationItemComponent
+            icon="information-circle-outline"
+            text="Learn about hosting"
+          />
+          {/* <ProfileNavigationItemComponent icon={<HelpIcon width={24} height={24} color={"#000000"}/>} text="Get help"/> */}
+          <ProfileNavigationItemComponent
+            icon="help-circle-outline"
+            text="Get help"
+          />
+          <ProfileNavigationItemComponent
+            icon="document-text-outline"
+            text="Terms of Service"
+          />
+          {/* <ProfileNavigationItemComponent icon="book-outline" text="Terms of Service" /> */}
+          <ProfileNavigationItemComponent
+            icon="document-text-outline"
+            text="Privacy Policy"
+          />
+          <ProfileNavigationItemComponent
+            icon="book-outline"
+            text="Open source licences"
+          />
+        </View>
+
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            gap: 4,
+            paddingTop: 13,
+          }}
+        >
+          <Text
+            style={[
+              defaultStyles.textSubHeadings3_mini,
+              {
+                color: Colors.dark,
+                fontFamily: "Cereal",
+              },
+            ]}
+          >
+            Version 24.10 (28002967)
+          </Text>
+        </View>
 
       </View>
     </SafeAreaView>
