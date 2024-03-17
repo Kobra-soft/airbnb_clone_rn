@@ -103,7 +103,6 @@ function RootLayoutNav() {
   LogBox.ignoreLogs([
     "The navigation state parsed from the URL contains routes not present in the root navigator. This usually means that the linking configuration doesn't match the navigation structure. See https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration.",
   ]);
-  /* The navigation state parsed from the URL contains routes not present in the root navigator. This usually means that the linking configuration doesn't match the navigation structure. See https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration. */
 
   return (
     <Stack>
