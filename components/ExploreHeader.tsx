@@ -8,6 +8,7 @@ import {
   Image,
   Animated,
   FlatList,
+  ViewToken,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -124,9 +125,16 @@ const ExploreHeader = () => {
 
   const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 });
 
-  const onViewRef = React.useRef(({ viewableItems }) => {
+/*   const onViewRef = React.useRef(({ viewableItems }) => {
     if (viewableItems.length > 0) {
       setActiveIndex(viewableItems[0].index);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+  }); */
+  
+  const onViewRef = React.useRef((info: { viewableItems: ViewToken[] }) => {
+    if (info.viewableItems.length > 0 && info.viewableItems[0].index !== null) {
+      setActiveIndex(info.viewableItems[0].index);
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
   });
