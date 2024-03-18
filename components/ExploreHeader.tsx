@@ -111,6 +111,56 @@ const categories2 = [
     icon: require("../assets/images/Omg2.png"),
     selectedIcon: require("../assets/images/Omg.jpg"),
   },
+  {
+    name: "Earth homes",
+    icon: require("../assets/images/EarthHomes2.png"),
+    selectedIcon: require("../assets/images/EarthHomes.jpg"),
+  },
+  {
+    name: "Top of the world",
+    icon: require("../assets/images/TopWorld2.png"),
+    selectedIcon: require("../assets/images/TopWorld.jpg"),
+  },
+  {
+    name: "Caves",
+    icon: require("../assets/images/Caves2.png"),
+    selectedIcon: require("../assets/images/Caves.jpg"),
+  },
+  {
+    name: "Cabins",
+    icon: require("../assets/images/Cabins2.png"),
+    selectedIcon: require("../assets/images/Cabins.jpg"),
+  },
+  {
+    name: "Beachfront",
+    icon: require("../assets/images/BeachFront2.png"),
+    selectedIcon: require("../assets/images/BeachFront.jpg"),
+  },
+  {
+    name: "Countryside",
+    icon: require("../assets/images/CountrySide2.png"),
+    selectedIcon: require("../assets/images/CountrySide.jpg"),
+  },
+  {
+    name: "Play",
+    icon: require("../assets/images/Play2.png"),
+    selectedIcon: require("../assets/images/Play.jpg"),
+  },
+  {
+    name: "Historical homes",
+    icon: require("../assets/images/HistoricalHomes2.png"),
+    selectedIcon: require("../assets/images/HistoricalHomes.jpg"),
+  },
+  {
+    name: "Iconic cities",
+    icon: require("../assets/images/IconicCities2.png"),
+    selectedIcon: require("../assets/images/IconicCities.jpg"),
+  },
+  {
+    name: "OMG",
+    icon: require("../assets/images/Omg2.png"),
+    selectedIcon: require("../assets/images/Omg.jpg"),
+  },
 ];
 
 const ExploreHeader = () => {
@@ -131,7 +181,7 @@ const ExploreHeader = () => {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
   }); */
-  
+
   const onViewRef = React.useRef((info: { viewableItems: ViewToken[] }) => {
     if (info.viewableItems.length > 0 && info.viewableItems[0].index !== null) {
       setActiveIndex(info.viewableItems[0].index);
