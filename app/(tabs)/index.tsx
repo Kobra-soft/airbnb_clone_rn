@@ -19,7 +19,7 @@ const IndexScreen = () => {
           }}
         />
 
-        <Listings />
+        {/* <Listings /> */}
       </View>
     </SafeAreaProvider>
   );
