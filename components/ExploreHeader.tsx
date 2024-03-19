@@ -4,11 +4,8 @@ import {
   TouchableOpacity,
   Text,
   Platform,
-  ScrollView,
   Image,
-  Animated,
   FlatList,
-  ViewToken,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -163,31 +160,27 @@ const categories2 = [
   },
 ];
 
-const ExploreHeader = () => {
-  const itemsRef = useRef<Array<TouchableOpacity | null>>([]);
+interface Props {
+  onCategoryChanged: (category: string) => void;
+}
+
+const ExploreHeader = ({ onCategoryChanged }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const scrollViewRef = React.createRef<ScrollView>();
-  const ITEM_WIDTH = Dimensions.get("window").width / 3;
-  /* const itemsRef = React.useRef([]); */
-  const [itemWidth, setItemWidth] = React.useState(0);
-  const scrollX = new Animated.Value(0);
-  const flatListRef = React.createRef<FlatList<any>>();
+  const [itemWidths, setItemWidths] = useState<number[]>([]);
+  const flatListRef = useRef<FlatList>(null);
 
-  const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 });
-
-/*   const onViewRef = React.useRef(({ viewableItems }) => {
-    if (viewableItems.length > 0) {
-      setActiveIndex(viewableItems[0].index);
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    }
-  }); */
-
-  const onViewRef = React.useRef((info: { viewableItems: ViewToken[] }) => {
-    if (info.viewableItems.length > 0 && info.viewableItems[0].index !== null) {
-      setActiveIndex(info.viewableItems[0].index);
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    }
-  });
+  const selectCategory = async (index: number) => {
+    setActiveIndex(index);
+  
+    // Calculate the offset
+    const offset = itemWidths.slice(0, index).reduce((prev, curr) => prev + curr, 0);
+  
+    flatListRef.current?.scrollToOffset({ offset, animated: true });
+  
+    // Add haptic feedback and category change
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    onCategoryChanged(categories2[index].name);
+  };
 
   return (
     <View style={{ backgroundColor: "#000000" }}>
@@ -239,65 +232,44 @@ const ExploreHeader = () => {
         </View>
       </SafeAreaView>
 
+      <View style={styles.container2}>
       <FlatList
-        style={{ backgroundColor: "#ffffff" }}
         ref={flatListRef}
         horizontal
         showsHorizontalScrollIndicator={false}
         data={categories2}
         keyExtractor={(item, index) => index.toString()}
-        onViewableItemsChanged={onViewRef.current}
-        viewabilityConfig={viewConfigRef.current}
         renderItem={({ item, index }) => (
           <TouchableOpacity
-            style={styles.categoriesBtn}
-            onPress={() => {
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-              setActiveIndex(index);
-
-              // Scroll to the index
-              if (flatListRef.current) {
-                flatListRef.current.scrollToIndex({ index, animated: true });
-              }
+            onLayout={(event) => {
+              const newWidths = [...itemWidths];
+              newWidths[index] = event.nativeEvent.layout.width;
+              setItemWidths(newWidths);
             }}
+            style={
+              activeIndex === index
+                ? styles.categoriesBtnActive
+                : styles.categoriesBtn
+            }
+            onPress={() => selectCategory(index)}
           >
-            <View style={{ alignItems: "center", justifyContent: "center" }}>
-              <Image
-                source={activeIndex === index ? item.selectedIcon : item.icon}
-                style={{ width: 24, height: 24 }}
-              />
-              <View
-                style={
-                  activeIndex === index
-                    ? styles.categoryTextContainerActive
-                    : styles.categoryTextContainer
-                }
-              >
-                <Text
-                  style={
-                    activeIndex === index
-                      ? styles.categoryTextActive
-                      : styles.categoryText
-                  }
-                >
-                  {item.name}
-                </Text>
-              </View>
-            </View>
+            <Image
+              source={activeIndex === index ? item.selectedIcon : item.icon}
+              style={{ width: 24, height: 24 }}
+            />
+            <Text
+              style={
+                activeIndex === index
+                  ? styles.categoryTextActive
+                  : styles.categoryText
+              }
+            >
+              {item.name}
+            </Text>
           </TouchableOpacity>
         )}
       />
-
-      <LinearGradient
-        colors={["rgba(0,0,0,0.1)", "transparent"]}
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: 4,
-          bottom: -4,
-          zIndex: 1,
-        }}
-      />
+    </View>
     </View>
   );
 };
@@ -308,6 +280,10 @@ const styles = StyleSheet.create({
     height: Platform.OS === "ios" ? 20 : 69,
     paddingTop: Platform.OS === "android" ? 8 : 0,
   },
+  // Container2 for the FlatList / ScrollView!!! 
+  container2: {
+    backgroundColor: "#fff",
+  },
   actionRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -317,11 +293,8 @@ const styles = StyleSheet.create({
   searchBtn: {
     backgroundColor: "#fff",
     flexDirection: "row",
-    // padding top and bottom
     paddingVertical: 10,
-    // moves search icon from the left
     paddingHorizontal: 20,
-    // gap from search icon to text
     gap: 17,
     alignItems: "center",
     width: "86.5%",
@@ -344,6 +317,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     marginLeft: 10,
   },
+
   categoryText: {
     fontSize: 12,
     fontFamily: "Cereal-medium",
@@ -358,23 +332,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    /* paddingLeft: 13.5, */
-    /* paddingHorizontal: 5, */
-    /* backgroundColor: "#ff0000", */
-    /* borderWidth: 0.5, */
-    minWidth: 75,
-    paddingHorizontal: 10,
-    paddingTop: 10,
-    /* paddingBottom: 15, */
-    marginTop: 0,
-    marginLeft: 0,
-    left: 6,
-  },
-  categoryTextContainer: {
     paddingTop: 10,
     paddingBottom: 15,
   },
-  categoryTextContainerActive: {
+  categoriesBtnActive: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
     paddingTop: 10,
     paddingBottom: 15,
     borderBottomColor: "#000",
