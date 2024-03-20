@@ -11,6 +11,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { defaultStyles } from "@/constants/Styles";
 import { Link } from "expo-router";
 import { Listing } from "@/interfaces/listing";
+import { Ionicons } from "@expo/vector-icons";
 
 interface Props {
   listings: any[];
@@ -51,6 +52,9 @@ const Listings = ({ listings: items, category }: Props) => {
       <TouchableOpacity>
         <View style={styles.listing}>
           <Image source={{ uri: item.medium_url }} style={styles.image} />
+          <TouchableOpacity style={{ position: 'absolute', right:30, top: 30}}>
+            <Ionicons name="heart-outline" size={24} color="#000" />
+          </TouchableOpacity>
         </View>
       </TouchableOpacity>
     </Link>
