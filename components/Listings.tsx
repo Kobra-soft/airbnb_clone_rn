@@ -1,55 +1,83 @@
-import { View, Text, FlatList, ListRenderItem, TouchableOpacity, StyleSheet, Image } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
-import { defaultStyles } from '@/constants/Styles';
-import { Link } from 'expo-router';
+import {
+  View,
+  Text,
+  FlatList,
+  ListRenderItem,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { defaultStyles } from "@/constants/Styles";
+import { Link } from "expo-router";
+import { Listing } from "@/interfaces/listing";
 
 interface Props {
   listings: any[];
   category: string;
 }
 
-const Listings = ( {listings: items, category}: Props ) => {
+interface RenderRowProps {
+  item: Listing;
+}
+
+const Listings = ({ listings: items, category }: Props) => {
   const [loading, setLoading] = useState(false);
   const listRef = useRef<FlatList>(null);
 
   useEffect(() => {
-    console.log('RELOAD LISTINGS', items.length);
+    console.log("RELOAD LISTINGS", items.length);
     setLoading(true);
 
     setTimeout(() => {
       setLoading(false);
-    }, 200)
+    }, 200);
+  }, [category]);
 
-  }, [category])
+/*   const renderRow: ListRenderItem<Listing> = ({ item }) => (
 
-  const renderRow: ListRenderItem<any> = ({item}) => (
-    <Link href={`/listing/${item.id}`}>
+    <Link href={`/listing/${item.id}`} asChild>
       <TouchableOpacity>
         <View style={styles.listing}>
-        <Image source={{uri: item.medium_url}}/>
+          <Image source={{ uri: item.medium_url }} style={styles.image} />
         </View>
       </TouchableOpacity>
     </Link>
-  
-  )
-  
+  ); */
+
+  const RenderRow: React.FC<RenderRowProps> = React.memo(({ item }) => (
+    // Link must ADD asChild prop to work! otherwise wont see images
+    <Link href={`/listing/${item.id}`} asChild>
+      <TouchableOpacity>
+        <View style={styles.listing}>
+          <Image source={{ uri: item.medium_url }} style={styles.image} />
+        </View>
+      </TouchableOpacity>
+    </Link>
+  ));
+
+  const renderRow: ListRenderItem<Listing> = ({ item }) => <RenderRow item={item} />;
+
   return (
     <View style={defaultStyles.container}>
-      
-      <FlatList 
-      renderItem={renderRow}
-      ref={listRef}
-      data={loading ? [] : items}
-
-        />
+      <FlatList
+        renderItem={renderRow}
+        ref={listRef}
+        data={loading ? [] : items}
+      />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   listing: {
-    padding: 16
+    padding: 16,
+  },
+  image: {
+    width: "100%",
+    height: 300,
+    borderRadius: 10,
   }
-})
+});
 
-export default Listings
+export default Listings;
