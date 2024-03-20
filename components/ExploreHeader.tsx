@@ -27,7 +27,7 @@ import { Dimensions } from "react-native";
 interface Props {
   onCategoryChanged: (category: string) => void;
 }
-  const ExploreHeader = ({ onCategoryChanged}: Props) => {
+const ExploreHeader = ({ onCategoryChanged }: Props) => {
   const itemsRef = useRef<Array<TouchableOpacity | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollViewRef = React.createRef<ScrollView>();
@@ -142,11 +142,10 @@ interface Props {
       name: "Earth homes",
       icon: require("../assets/images/EarthHomes2.png"),
       selectedIcon: require("../assets/images/EarthHomes.jpg"),
-    }
+    },
   ];
 
   const onViewRef = React.useRef((info: { viewableItems: ViewToken[] }) => {
-  
     if (info.viewableItems.length > 0 && info.viewableItems[0].index !== null) {
       const currentIndex = info.viewableItems[0].index;
       setActiveIndex(currentIndex);
@@ -214,7 +213,9 @@ interface Props {
         keyExtractor={(item, index) => index.toString()}
         onViewableItemsChanged={onViewRef.current}
         viewabilityConfig={viewConfigRef.current}
-          contentContainerStyle={{ paddingRight: Dimensions.get('window').width / 2 + 40 }}
+        contentContainerStyle={{
+          paddingRight: Dimensions.get("window").width / 2 + 40,
+        }}
         renderItem={({ item, index }) => (
           <TouchableOpacity
             style={styles.categoriesBtn}
@@ -253,9 +254,16 @@ interface Props {
           </TouchableOpacity>
         )}
       />
-
-
-        
+      <LinearGradient
+          colors={["rgba(0,0,0,0.1)", "transparent"]}
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: 4,
+            bottom: -4,
+            zIndex: 1,
+          }}
+        />
     </View>
   );
 };
@@ -333,7 +341,6 @@ const styles = StyleSheet.create({
     borderBottomColor: "#000",
     borderBottomWidth: 2,
   },
-
 });
 
 export default ExploreHeader;
