@@ -43,7 +43,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     "Cereal-light": require("../assets/fonts/AirbnbCereal_W_Lt.otf"),
-    Cereal: require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
+    "Cereal": require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
     "Cereal-medium": require("../assets/fonts/AirbnbCereal_W_Md.otf"),
     "Cereal-bold": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
     "Cereal-extra-bold": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
