@@ -220,18 +220,18 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
           <TouchableOpacity
             style={styles.categoriesBtn}
             onPress={() => {
-              /* Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); */
               setActiveIndex(index);
+              /* Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); */
               if (flatListRef.current) {
                 flatListRef.current.scrollToIndex({ index, animated: true });
-                /* Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); */
               }
             }}
           >
             <View style={{ alignItems: "center", justifyContent: "center" }}>
               <Image
                 source={activeIndex === index ? item.selectedIcon : item.icon}
-                style={{ width: 24, height: 24 }}
+                style={styles.categoriesIcon}
+
               />
               <View
                 style={
@@ -322,13 +322,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     minWidth: 75,
-
     paddingHorizontal: 10,
-    marginHorizontal: 0,
-
-    paddingTop: 10,
-    marginTop: 0,
-    marginLeft: 0,
+    paddingTop: 8,
     left: 6,
   },
   categoryTextContainer: {
@@ -340,6 +335,11 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     borderBottomColor: "#000",
     borderBottomWidth: 2,
+  },
+  categoriesIcon: {
+    width: 24,
+    height: 24,
+    top: 3,
   },
 });
 

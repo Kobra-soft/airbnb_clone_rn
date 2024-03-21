@@ -12,6 +12,8 @@ import { defaultStyles } from "@/constants/Styles";
 import { Link } from "expo-router";
 import { Listing } from "@/interfaces/listing";
 import { Ionicons } from "@expo/vector-icons";
+import HeartIcon1 from "../assets/svgs/heart.svg";
+import HeartIcon2 from "../assets/svgs/heart2.svg";
 
 interface Props {
   listings: any[];
@@ -52,8 +54,17 @@ const Listings = ({ listings: items, category }: Props) => {
       <TouchableOpacity>
         <View style={styles.listing}>
           <Image source={{ uri: item.medium_url }} style={styles.image} />
-          <TouchableOpacity style={{ position: 'absolute', right:30, top: 30}}>
-            <Ionicons name="heart-outline" size={24} color="#000" />
+          <TouchableOpacity style={{ position: 'absolute', right:40, top: 38}}>
+
+            <Ionicons name="heart-outline" size={25} color="#fff"/>
+
+            {/* <HeartIcon1
+                width={17}
+                height={17}
+                color="#000"
+                strokeWidth={"3"}
+              /> */}
+
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
@@ -75,12 +86,13 @@ const Listings = ({ listings: items, category }: Props) => {
 
 const styles = StyleSheet.create({
   listing: {
-    padding: 16,
+    padding: 25,
+    marginTop: 0,
   },
   image: {
     width: "100%",
     height: 300,
-    borderRadius: 10,
+    borderRadius: 13,
   }
 });
 
