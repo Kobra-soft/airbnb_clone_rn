@@ -43,7 +43,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     "Cereal-light": require("../assets/fonts/AirbnbCereal_W_Lt.otf"),
-    "Cereal": require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
+    Cereal: require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
     "Cereal-medium": require("../assets/fonts/AirbnbCereal_W_Md.otf"),
     "Cereal-bold": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
     "Cereal-extra-bold": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
@@ -124,19 +124,6 @@ function RootLayoutNav() {
           ),
         }}
       />
-      {/*       <Stack.Screen
-        name="listing/[id]"
-        options={{
-          presentation: "transparentModal",
-          animation: "fade",
-          headerTitle: "Listing [id]",
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={28} />
-            </TouchableOpacity>
-          ),
-        }}
-      /> */}
 
       <Stack.Screen name="listing/[id]" options={{ headerTitle: "" }} />
 

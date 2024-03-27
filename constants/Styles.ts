@@ -1,5 +1,5 @@
-import Colors from '@/constants/Colors';
-import { StyleSheet } from 'react-native';
+import Colors from "@/constants/Colors";
+import { StyleSheet } from "react-native";
 
 export const defaultStyles = StyleSheet.create({
   container: {
@@ -68,7 +68,7 @@ export const defaultStyles = StyleSheet.create({
     position: "absolute",
     left: 20,
   },
-/*   footer: {
+  /*   footer: {
     position: "absolute",
     height: 100,
     bottom: 0,

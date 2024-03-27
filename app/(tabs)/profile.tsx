@@ -104,7 +104,6 @@ const ProfileScreen = () => {
             icon="information-circle-outline"
             text="Learn about hosting"
           />
-          {/* <ProfileNavigationItemComponent icon={<HelpIcon width={24} height={24} color={"#000000"}/>} text="Get help"/> */}
           <ProfileNavigationItemComponent
             icon="help-circle-outline"
             text="Get help"
@@ -113,7 +112,6 @@ const ProfileScreen = () => {
             icon="document-text-outline"
             text="Terms of Service"
           />
-          {/* <ProfileNavigationItemComponent icon="book-outline" text="Terms of Service" /> */}
           <ProfileNavigationItemComponent
             icon="document-text-outline"
             text="Privacy Policy"

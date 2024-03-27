@@ -231,7 +231,6 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
               <Image
                 source={activeIndex === index ? item.selectedIcon : item.icon}
                 style={styles.categoriesIcon}
-
               />
               <View
                 style={
@@ -255,15 +254,15 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
         )}
       />
       <LinearGradient
-          colors={["rgba(0,0,0,0.1)", "transparent"]}
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: 4,
-            bottom: -4,
-            zIndex: 1,
-          }}
-        />
+        colors={["rgba(0,0,0,0.1)", "transparent"]}
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: 4,
+          bottom: -4,
+          zIndex: 1,
+        }}
+      />
     </View>
   );
 };

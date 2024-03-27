@@ -8,31 +8,35 @@ import { Link } from "expo-router";
 const TripsScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ flex: 0, justifyContent: 'space-between', 
-      bottom:0, paddingHorizontal:23, /* backgroundColor:"#e2e2e2" */}}>
+      <View
+        style={{
+          flex: 0,
+          justifyContent: "space-between",
+          bottom: 0,
+          paddingHorizontal: 23,
+        }}
+      >
         <Text style={defaultStyles.textTitleHeadings}>Trips</Text>
         <View style={styles.separatorView}>
-            <View style={{
+          <View
+            style={{
               flex: 1,
-              /* borderBottomColor: '#c8c8c8', */
               borderBottomColor: Colors.grey_separator,
-              borderBottomWidth: 1
+              borderBottomWidth: 1,
             }}
-            />
-          </View>
-          <Text style={defaultStyles.textHeadings2}>No trips yet</Text>
-          <Text style={defaultStyles.textSubHeadings}>When you're ready to plan your next trip, we're here to help.</Text>
-
-              {/* Login button */}
-      <View style={{ alignItems: 'stretch', width:94, marginTop: 13 }}>
-        <TouchableOpacity style={defaultStyles.btn}>
-        <Link href={'/(modals)/login'}>
-            {/* <Text style={defaultStyles.btnText}>Log in</Text> */}
-            <Text style={defaultStyles.btnText}>Log in</Text>
-        </Link>
-        </TouchableOpacity>
-      </View>
-
+          />
+        </View>
+        <Text style={defaultStyles.textHeadings2}>No trips yet</Text>
+        <Text style={defaultStyles.textSubHeadings}>
+          When you're ready to plan your next trip, we're here to help.
+        </Text>
+        <View style={{ alignItems: "stretch", width: 94, marginTop: 13 }}>
+          <TouchableOpacity style={defaultStyles.btn}>
+            <Link href={"/(modals)/login"}>
+              <Text style={defaultStyles.btnText}>Log in</Text>
+            </Link>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -41,17 +45,17 @@ const TripsScreen = () => {
 export default TripsScreen;
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor: '#ffffff',
-  },  
-  separatorView:{
-    flexDirection: 'row',
-    marginVertical: 32
+  container: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+  },
+  separatorView: {
+    flexDirection: "row",
+    marginVertical: 32,
   },
   separator: {
-    fontFamily: 'Cereal',
+    fontFamily: "Cereal",
     color: Colors.grey,
     fontSize: 13,
   },
-})
+});
