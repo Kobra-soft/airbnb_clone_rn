@@ -29,6 +29,17 @@ const Listings = ({ listings: items, category }: Props) => {
   const [loading, setLoading] = useState(false);
   const listRef = useRef<FlatList>(null);
 
+  // Regular expression for checking if a string is a valid URL
+  const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
+// State for the items with images that loaded successfully
+const [itemsWithImages, setItemsWithImages] = useState(items.filter(item => urlRegex.test(item.xl_picture_url)));
+
+// Update itemsWithImages when items changes
+useEffect(() => {
+  setItemsWithImages(items.filter(item => urlRegex.test(item.xl_picture_url)));
+}, [items]);
+
   useEffect(() => {
     console.log("RELOAD LISTINGS", items.length);
     setLoading(true);
@@ -55,9 +66,13 @@ const Listings = ({ listings: items, category }: Props) => {
           entering={FadeInRight}
           exiting={FadeOutLeft}
         >
-          <Animated.Image
+<Animated.Image
             source={{ uri: item.xl_picture_url }}
             style={styles.image}
+            onError={() => {
+              // Remove the item from itemsWithImages when its image fails to load
+              setItemsWithImages(prevItems => prevItems.filter(i => i.id !== item.id));
+            }}
           />
           <TouchableOpacity
             style={{ position: "absolute", right: 40, top: 40 }}
@@ -164,7 +179,9 @@ const Listings = ({ listings: items, category }: Props) => {
       <FlatList
         renderItem={renderRow}
         ref={listRef}
-        data={loading ? [] : items}
+        /* data={loading ? [] : items} */
+        /* data={loading ? [] : items.filter(item => item.xl_picture_url)} */
+        data={loading ? [] : itemsWithImages}
       />
     </View>
   );
@@ -179,6 +196,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 345,
     borderRadius: 13,
+    backgroundColor: "#f5f5f5",
   },
 });
 
