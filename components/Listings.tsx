@@ -33,10 +33,18 @@ const Listings = ({ listings: items, category }: Props) => {
     console.log("RELOAD LISTINGS", items.length);
     setLoading(true);
 
+    // Randomize the order of the items
+    items.sort(() => Math.random() - 0.5);
+
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 0);
   }, [category]);
+
+  // Add a new state variable for tracking the press status of the heart icons
+  const [heartPressedStatus, setHeartPressedStatus] = useState<
+    Record<string, boolean>
+  >({});
 
   // Render one listing row for the FlatList
   const renderRow: ListRenderItem<any> = ({ item }) => (
@@ -52,9 +60,29 @@ const Listings = ({ listings: items, category }: Props) => {
             style={styles.image}
           />
           <TouchableOpacity
-            style={{ position: "absolute", right: 40, top: 38 }}
+            style={{ position: "absolute", right: 40, top: 40 }}
+            onPress={() =>
+              setHeartPressedStatus((prevState) => ({
+                ...prevState,
+                [item.id]: !prevState[item.id],
+              }))
+            } // Update the state when the icon is pressed
           >
-            <Ionicons name="heart-outline" size={24} color="#000" />
+            {/* <HeartIcon2
+              width={24}
+              height={24}
+              fill={isHeartPressed ? "#FF395C" : "rgba(0, 0, 0, 0.5)"}
+              style={{}}
+            /> */}
+
+            <HeartIcon2
+              width={24}
+              height={24}
+              fill={
+                heartPressedStatus[item.id] ? "#FF395C" : "rgba(0, 0, 0, 0.5)"
+              }
+              style={{}}
+            />
           </TouchableOpacity>
 
           <View
@@ -77,15 +105,29 @@ const Listings = ({ listings: items, category }: Props) => {
               </Text>
             </View>
           </View>
-          <Text style={{ fontFamily: "Cereal", fontSize: 15, paddingTop: 4, color: "#717171" }}>
+          <Text
+            style={{
+              fontFamily: "Cereal",
+              fontSize: 15,
+              paddingTop: 4,
+              color: "#717171",
+            }}
+          >
             Hosted by {item.host_name}
           </Text>
 
-          <Text style={{ fontFamily: "Cereal", fontSize: 15, paddingTop: 4, color: "#717171" }}>
-          £{item.price} per night
+          <Text
+            style={{
+              fontFamily: "Cereal",
+              fontSize: 15,
+              paddingTop: 4,
+              color: "#717171",
+            }}
+          >
+            £{item.price} per night
           </Text>
-            
-{/*           <View
+
+          {/*           <View
             style={{
               paddingTop: 0,
               flexDirection: "row",
@@ -107,7 +149,7 @@ const Listings = ({ listings: items, category }: Props) => {
           <View style={{ flexDirection: "row", gap: 4, marginTop: 10 }}>
             <Text style={{ textDecorationLine: "underline" }}>
               <Text style={{ fontFamily: "Cereal-bold", fontSize: 16 }}>
-                £{item.price * item.minimum_nights} 
+                £{item.price * item.minimum_nights}
               </Text>
               <Text style={{ fontFamily: "Cereal", fontSize: 16 }}> total</Text>
             </Text>
