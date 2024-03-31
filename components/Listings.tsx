@@ -56,7 +56,7 @@ const Listings = ({ listings: items, category }: Props) => {
           exiting={FadeOutLeft}
         >
           <Animated.Image
-            source={{ uri: item.medium_url }}
+            source={{ uri: item.xl_picture_url }}
             style={styles.image}
           />
           <TouchableOpacity
