@@ -80,8 +80,12 @@ const Listings = ({ listings: items, category }: Props) => {
           <Text style={{ fontFamily: "Cereal", fontSize: 15, paddingTop: 4, color: "#717171" }}>
             Hosted by {item.host_name}
           </Text>
+
+          <Text style={{ fontFamily: "Cereal", fontSize: 15, paddingTop: 4, color: "#717171" }}>
+          £{item.price} per night
+          </Text>
             
-          <View
+{/*           <View
             style={{
               paddingTop: 0,
               flexDirection: "row",
@@ -98,7 +102,7 @@ const Listings = ({ listings: items, category }: Props) => {
             £{item.price} per night
           </Text>
             </View>
-          </View>
+          </View> */}
 
           <View style={{ flexDirection: "row", gap: 4, marginTop: 10 }}>
             <Text style={{ textDecorationLine: "underline" }}>
