@@ -38,32 +38,6 @@ const Listings = ({ listings: items, category }: Props) => {
     }, 200);
   }, [category]);
 
-/*   const renderRow: ListRenderItem<Listing> = ({ item }) => (
-
-    <Link href={`/listing/${item.id}`} asChild>
-      <TouchableOpacity>
-        <View style={styles.listing}>
-          <Image source={{ uri: item.medium_url }} style={styles.image} />
-        </View>
-      </TouchableOpacity>
-    </Link>
-  ); */
-
-/*   const RenderRow: React.FC<RenderRowProps> = React.memo(({ item }) => (
-    <Link href={`/listing/${item.id}`} asChild>
-      <TouchableOpacity>
-        <View style={styles.listing}>
-          <Image source={{ uri: item.medium_url }} style={styles.image} />
-          <TouchableOpacity style={{ position: 'absolute', right:40, top: 38}}>
-            <Ionicons name="heart-outline" size={25} color="#fff"/>
-          </TouchableOpacity>
-        </View>
-      </TouchableOpacity>
-    </Link>
-  ));
-
-  const renderRow: ListRenderItem<Listing> = ({ item }) => <RenderRow item={item} />; */
-
     // Render one listing row for the FlatList
     const renderRow: ListRenderItem<any> = ({ item }) => (
       <Link href={`/listing/${item.id}`} asChild>
