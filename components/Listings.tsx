@@ -32,13 +32,17 @@ const Listings = ({ listings: items, category }: Props) => {
   // Regular expression for checking if a string is a valid URL
   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
-// State for the items with images that loaded successfully
-const [itemsWithImages, setItemsWithImages] = useState(items.filter(item => urlRegex.test(item.xl_picture_url)));
+  // State for the items with images that loaded successfully
+  const [itemsWithImages, setItemsWithImages] = useState(
+    items.filter((item) => urlRegex.test(item.xl_picture_url)),
+  );
 
-// Update itemsWithImages when items changes
-useEffect(() => {
-  setItemsWithImages(items.filter(item => urlRegex.test(item.xl_picture_url)));
-}, [items]);
+  // Update itemsWithImages when items changes
+  useEffect(() => {
+    setItemsWithImages(
+      items.filter((item) => urlRegex.test(item.xl_picture_url)),
+    );
+  }, [items]);
 
   useEffect(() => {
     console.log("RELOAD LISTINGS", items.length);
@@ -66,12 +70,14 @@ useEffect(() => {
           entering={FadeInRight}
           exiting={FadeOutLeft}
         >
-<Animated.Image
+          <Animated.Image
             source={{ uri: item.xl_picture_url }}
             style={styles.image}
             onError={() => {
               // Remove the item from itemsWithImages when its image fails to load
-              setItemsWithImages(prevItems => prevItems.filter(i => i.id !== item.id));
+              setItemsWithImages((prevItems) =>
+                prevItems.filter((i) => i.id !== item.id),
+              );
             }}
           />
           <TouchableOpacity
@@ -176,11 +182,15 @@ useEffect(() => {
 
   return (
     <View style={defaultStyles.container}>
-      <FlatList
+      {/*       <FlatList
         renderItem={renderRow}
         ref={listRef}
-        /* data={loading ? [] : items} */
-        /* data={loading ? [] : items.filter(item => item.xl_picture_url)} */
+        data={loading ? [] : itemsWithImages}
+      /> */}
+      <FlatList
+        key={itemsWithImages.length} // add this line
+        renderItem={renderRow}
+        ref={listRef}
         data={loading ? [] : itemsWithImages}
       />
     </View>
