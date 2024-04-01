@@ -149,7 +149,7 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
     if (info.viewableItems.length > 0 && info.viewableItems[0].index !== null) {
       const currentIndex = info.viewableItems[0].index;
       setActiveIndex(currentIndex);
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      /* Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); */
       onCategoryChanged(categories2[currentIndex].name);
     }
   });
@@ -221,7 +221,7 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
             style={styles.categoriesBtn}
             onPress={() => {
               setActiveIndex(index);
-              /* Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); */
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               if (flatListRef.current) {
                 flatListRef.current.scrollToIndex({ index, animated: true });
               }

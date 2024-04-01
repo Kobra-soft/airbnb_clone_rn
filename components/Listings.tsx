@@ -25,6 +25,14 @@ interface Props {
   item: Listing;
 } */
 
+function shuffleArray(array: any[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 const Listings = ({ listings: items, category }: Props) => {
   const [loading, setLoading] = useState(false);
   const listRef = useRef<FlatList>(null);
@@ -37,19 +45,17 @@ const Listings = ({ listings: items, category }: Props) => {
     items.filter((item) => urlRegex.test(item.xl_picture_url)),
   );
 
-  // Update itemsWithImages when items changes
-  useEffect(() => {
-    setItemsWithImages(
-      items.filter((item) => urlRegex.test(item.xl_picture_url)),
-    );
-  }, [items]);
-
   useEffect(() => {
     console.log("RELOAD LISTINGS", items.length);
     setLoading(true);
 
-    // Randomize the order of the items
-    items.sort(() => Math.random() - 0.5);
+    // Shuffle and filter the items array
+    const shuffledItems = shuffleArray([...items]);
+    const filteredItems = shuffledItems.filter((item) =>
+      urlRegex.test(item.xl_picture_url),
+    );
+
+    setItemsWithImages(filteredItems);
 
     setTimeout(() => {
       setLoading(false);
@@ -67,19 +73,29 @@ const Listings = ({ listings: items, category }: Props) => {
       <TouchableOpacity>
         <Animated.View
           style={styles.listing}
-          entering={FadeInRight}
-          exiting={FadeOutLeft}
+/*        entering={FadeInRight}
+          exiting={FadeOutLeft} */
         >
-          <Animated.Image
+          {/*           <Animated.Image
             source={{ uri: item.xl_picture_url }}
             style={styles.image}
             onError={() => {
-              // Remove the item from itemsWithImages when its image fails to load
               setItemsWithImages((prevItems) =>
                 prevItems.filter((i) => i.id !== item.id),
               );
             }}
+          /> */}
+
+          <Animated.Image
+            source={{ uri: item.xl_picture_url }}
+            style={styles.image}
+            onError={(error) => {
+              error.nativeEvent.error && console.log(item.xl_picture_url);
+              error.nativeEvent.error &&
+                (item.xl_picture_url = "placeholder_image_url");
+            }}
           />
+
           <TouchableOpacity
             style={{ position: "absolute", right: 40, top: 40 }}
             onPress={() =>
@@ -89,13 +105,6 @@ const Listings = ({ listings: items, category }: Props) => {
               }))
             } // Update the state when the icon is pressed
           >
-            {/* <HeartIcon2
-              width={24}
-              height={24}
-              fill={isHeartPressed ? "#FF395C" : "rgba(0, 0, 0, 0.5)"}
-              style={{}}
-            /> */}
-
             <HeartIcon2
               width={24}
               height={24}
@@ -113,7 +122,6 @@ const Listings = ({ listings: items, category }: Props) => {
               justifyContent: "space-between",
             }}
           >
-            {/* <Text style={{ fontSize: 16, fontFamily: 'Cereal-medium' }}>{item.name}</Text> */}
             <Text style={{ fontSize: 16, fontFamily: "Cereal-medium" }}>
               {item.city}, {item.country}
             </Text>
@@ -137,7 +145,7 @@ const Listings = ({ listings: items, category }: Props) => {
             Hosted by {item.host_name}
           </Text>
 
-          <Text
+{/*           <Text
             style={{
               fontFamily: "Cereal",
               fontSize: 15,
@@ -146,9 +154,9 @@ const Listings = ({ listings: items, category }: Props) => {
             }}
           >
             £{item.price} per night
-          </Text>
+          </Text> */}
 
-          {/*           <View
+          <View
             style={{
               paddingTop: 0,
               flexDirection: "row",
@@ -156,7 +164,7 @@ const Listings = ({ listings: items, category }: Props) => {
             }}
           >
             <Text style={{ fontFamily: "Cereal", fontSize: 15, paddingTop: 4, color: "#717171" }}>
-            Minimum stay: {item.minimum_nights}
+            {/* Minimum stay: {item.minimum_nights} */}
           </Text>
             <View
               style={{ flexDirection: "column", gap: 4, alignItems: "center" }}
@@ -165,7 +173,7 @@ const Listings = ({ listings: items, category }: Props) => {
             £{item.price} per night
           </Text>
             </View>
-          </View> */}
+          </View>
 
           <View style={{ flexDirection: "row", gap: 4, marginTop: 10 }}>
             <Text style={{ textDecorationLine: "underline" }}>
