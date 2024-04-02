@@ -15,6 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import HeartIcon1 from "../assets/svgs/heart.svg";
 import HeartIcon2 from "../assets/svgs/heart2.svg";
 import Animated, { FadeInRight, FadeOutLeft } from "react-native-reanimated";
+import { format } from "date-fns";
 
 interface Props {
   listings: any[];
@@ -33,6 +34,52 @@ function shuffleArray(array: any[]) {
   return array;
 }
 
+// RANDOM date formatter, for available booking
+// e.g 20-24 May
+// Airbnb hotel available (20-24 May)
+
+/* In this code, the daysInMonth variable holds the number of days in the next month. 
+The start day is a random day between 1 and (daysInMonth - 6), 
+to ensure that a 7-day booking is always possible. */
+
+// Function to generate a random date range for the next month
+const generateDateRange = () => {
+  // Get the current date
+  const currentDate = new Date();
+
+  // Get the next month
+  const nextMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+  );
+
+  // Get the number of days in the next month
+  const daysInMonth = new Date(
+    nextMonth.getFullYear(),
+    nextMonth.getMonth() + 1,
+    0,
+  ).getDate();
+
+  // Generate a random start day for the booking
+  const startDay = Math.floor(Math.random() * (daysInMonth - 2)) + 1; // Random day between 1 and (daysInMonth - 6)
+  // 5 day booking
+
+  // Calculate the end day for the booking
+  /* const endDay = startDay + 4 */ const endDay = startDay + 2; // 3 day booking
+
+  // Format the start and end dates
+  const startDate = format(
+    new Date(nextMonth.getFullYear(), nextMonth.getMonth(), startDay),
+    "d",
+  );
+  const endDate = format(
+    new Date(nextMonth.getFullYear(), nextMonth.getMonth(), endDay),
+    "d MMMM",
+  );
+
+  return `${startDate}-${endDate}`;
+};
+
 const Listings = ({ listings: items, category }: Props) => {
   const [loading, setLoading] = useState(false);
   const listRef = useRef<FlatList>(null);
@@ -41,9 +88,7 @@ const Listings = ({ listings: items, category }: Props) => {
   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
   // State for the items with images that loaded successfully
-  const [itemsWithImages, setItemsWithImages] = useState(
-    items.filter((item) => urlRegex.test(item.xl_picture_url)),
-  );
+  const [itemsWithImages, setItemsWithImages] = useState<any[]>([]);
 
   useEffect(() => {
     console.log("RELOAD LISTINGS", items.length);
@@ -55,7 +100,13 @@ const Listings = ({ listings: items, category }: Props) => {
       urlRegex.test(item.xl_picture_url),
     );
 
-    setItemsWithImages(filteredItems);
+    // Generate a date range for each item
+    const itemsWithDates = filteredItems.map((item) => ({
+      ...item,
+      dateRange: generateDateRange(),
+    }));
+
+    setItemsWithImages(itemsWithDates);
 
     setTimeout(() => {
       setLoading(false);
@@ -73,7 +124,7 @@ const Listings = ({ listings: items, category }: Props) => {
       <TouchableOpacity>
         <Animated.View
           style={styles.listing}
-/*        entering={FadeInRight}
+          /*        entering={FadeInRight}
           exiting={FadeOutLeft} */
         >
           {/*           <Animated.Image
@@ -145,7 +196,7 @@ const Listings = ({ listings: items, category }: Props) => {
             Hosted by {item.host_name}
           </Text>
 
-{/*           <Text
+          {/*           <Text
             style={{
               fontFamily: "Cereal",
               fontSize: 15,
@@ -163,16 +214,32 @@ const Listings = ({ listings: items, category }: Props) => {
               justifyContent: "space-between",
             }}
           >
-            <Text style={{ fontFamily: "Cereal", fontSize: 15, paddingTop: 4, color: "#717171" }}>
-            {/* Minimum stay: {item.minimum_nights} */}
-          </Text>
-            <View
+            <Text
+              style={{
+                fontFamily: "Cereal",
+                fontSize: 15,
+                paddingTop: 4,
+                color: "#717171",
+              }}
+            >
+              {/* {startDate}-{endDate} */}
+              {/* {generateDateRange()} */}
+              {item.dateRange}
+            </Text>
+            {/*             <View
               style={{ flexDirection: "column", gap: 4, alignItems: "center" }}
             >
-          <Text style={{ fontFamily: "Cereal", fontSize: 15, paddingTop: 4, color: "#717171" }}>
-            £{item.price} per night
-          </Text>
-            </View>
+              <Text
+                style={{
+                  fontFamily: "Cereal",
+                  fontSize: 15,
+                  paddingTop: 4,
+                  color: "#717171",
+                }}
+              >
+                £{item.price} per night
+              </Text>
+            </View> */}
           </View>
 
           <View style={{ flexDirection: "row", gap: 4, marginTop: 10 }}>
@@ -190,13 +257,8 @@ const Listings = ({ listings: items, category }: Props) => {
 
   return (
     <View style={defaultStyles.container}>
-      {/*       <FlatList
-        renderItem={renderRow}
-        ref={listRef}
-        data={loading ? [] : itemsWithImages}
-      /> */}
       <FlatList
-        key={itemsWithImages.length} // add this line
+        key={itemsWithImages.length}
         renderItem={renderRow}
         ref={listRef}
         data={loading ? [] : itemsWithImages}
