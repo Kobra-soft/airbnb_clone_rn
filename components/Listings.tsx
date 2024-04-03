@@ -22,10 +22,6 @@ interface Props {
   category: string;
 }
 
-/* interface RenderRowProps {
-  item: Listing;
-} */
-
 function shuffleArray(array: any[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -34,16 +30,13 @@ function shuffleArray(array: any[]) {
   return array;
 }
 
-// RANDOM date formatter, for available booking
-// e.g 20-24 May
-// Airbnb hotel available (20-24 May)
+// RANDOM DATE FORMATTER
+// Generates random dates for the listings
+// 
 
-/* In this code, the daysInMonth variable holds the number of days in the next month. 
-The start day is a random day between 1 and (daysInMonth - 6), 
-to ensure that a 7-day booking is always possible. */
 
 // Function to generate a random date range for the next month
-const generateDateRange = () => {
+const generateDateRange = (duration: number) => {
   // Get the current date
   const currentDate = new Date();
 
@@ -61,17 +54,15 @@ const generateDateRange = () => {
   ).getDate();
 
   // Generate a random start day for the booking
-  const startDay = Math.floor(Math.random() * (daysInMonth - 2)) + 1; // Random day between 1 and (daysInMonth - 6)
-  // 5 day booking
-
+  const startDay = Math.floor(Math.random() * (daysInMonth - duration + 1)) + 1; // Random day between 1 and (daysInMonth - duration + 1)
   // Calculate the end day for the booking
-  /* const endDay = startDay + 4 */ const endDay = startDay + 2; // 3 day booking
-
+  const endDay = startDay + duration - 1;
   // Format the start and end dates
   const startDate = format(
     new Date(nextMonth.getFullYear(), nextMonth.getMonth(), startDay),
     "d",
   );
+
   const endDate = format(
     new Date(nextMonth.getFullYear(), nextMonth.getMonth(), endDay),
     "d MMMM",
@@ -101,10 +92,16 @@ const Listings = ({ listings: items, category }: Props) => {
     );
 
     // Generate a date range for each item
-    const itemsWithDates = filteredItems.map((item) => ({
-      ...item,
-      dateRange: generateDateRange(),
-    }));
+    const itemsWithDates = filteredItems.map((item) => {
+      const duration = Math.floor(Math.random() * 6) + 2; // Random number between 2 and 7
+      const dateRange = generateDateRange(duration);
+
+      return {
+        ...item,
+        dateRange,
+        duration,
+      };
+    });
 
     setItemsWithImages(itemsWithDates);
 
@@ -124,19 +121,9 @@ const Listings = ({ listings: items, category }: Props) => {
       <TouchableOpacity>
         <Animated.View
           style={styles.listing}
-          /*        entering={FadeInRight}
+          /* entering={FadeInRight}
           exiting={FadeOutLeft} */
         >
-          {/*           <Animated.Image
-            source={{ uri: item.xl_picture_url }}
-            style={styles.image}
-            onError={() => {
-              setItemsWithImages((prevItems) =>
-                prevItems.filter((i) => i.id !== item.id),
-              );
-            }}
-          /> */}
-
           <Animated.Image
             source={{ uri: item.xl_picture_url }}
             style={styles.image}
@@ -146,7 +133,6 @@ const Listings = ({ listings: items, category }: Props) => {
                 (item.xl_picture_url = "placeholder_image_url");
             }}
           />
-
           <TouchableOpacity
             style={{ position: "absolute", right: 40, top: 40 }}
             onPress={() =>
@@ -154,7 +140,7 @@ const Listings = ({ listings: items, category }: Props) => {
                 ...prevState,
                 [item.id]: !prevState[item.id],
               }))
-            } // Update the state when the icon is pressed
+            }
           >
             <HeartIcon2
               width={24}
@@ -165,7 +151,6 @@ const Listings = ({ listings: items, category }: Props) => {
               style={{}}
             />
           </TouchableOpacity>
-
           <View
             style={{
               paddingTop: 13,
@@ -196,17 +181,6 @@ const Listings = ({ listings: items, category }: Props) => {
             Hosted by {item.host_name}
           </Text>
 
-          {/*           <Text
-            style={{
-              fontFamily: "Cereal",
-              fontSize: 15,
-              paddingTop: 4,
-              color: "#717171",
-            }}
-          >
-            £{item.price} per night
-          </Text> */}
-
           <View
             style={{
               paddingTop: 0,
@@ -222,11 +196,9 @@ const Listings = ({ listings: items, category }: Props) => {
                 color: "#717171",
               }}
             >
-              {/* {startDate}-{endDate} */}
-              {/* {generateDateRange()} */}
               {item.dateRange}
             </Text>
-            {/*             <View
+            <View
               style={{ flexDirection: "column", gap: 4, alignItems: "center" }}
             >
               <Text
@@ -239,13 +211,13 @@ const Listings = ({ listings: items, category }: Props) => {
               >
                 £{item.price} per night
               </Text>
-            </View> */}
+            </View>
           </View>
 
           <View style={{ flexDirection: "row", gap: 4, marginTop: 10 }}>
             <Text style={{ textDecorationLine: "underline" }}>
               <Text style={{ fontFamily: "Cereal-bold", fontSize: 16 }}>
-                £{item.price * item.minimum_nights}
+                £{(item.price * item.duration).toLocaleString()}
               </Text>
               <Text style={{ fontFamily: "Cereal", fontSize: 16 }}> total</Text>
             </Text>
