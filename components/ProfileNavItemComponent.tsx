@@ -6,26 +6,12 @@ import Colors from "@/constants/Colors";
 import ChevronRight from "../assets/svgs/chevron_right.svg";
 
 type IconName =
-  | "text"
-  | "key"
-  | "push"
-  | "map"
-  | "filter"
-  | "at"
-  | "link"
-  | "search"
-  | "image"
-  | "alert"
-  | "checkbox"
-  | "menu"
-  | "radio"
-  | "timer"
-  | "close"
-  | "book"
-  | "pause"
-  | "mail"
-  | "home"
-  | "woman-sharp";
+  | "settings-outline"
+  | "accessibility-outline"
+  | "information-circle-outline"
+  | "help-circle-outline"
+  | "document-text-outline"
+  | "book-outline";
 
 interface Props {
   icon: IconName;
@@ -33,7 +19,7 @@ interface Props {
   size?: number;
 }
 
-const ProfileNavigationItemComponent: React.FC<Props> = ({
+const ProfileNavItemComponent: React.FC<Props> = ({
   icon,
   text,
   size = 24,
@@ -69,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileNavigationItemComponent;
+export default ProfileNavItemComponent;

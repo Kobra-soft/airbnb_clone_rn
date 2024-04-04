@@ -135,7 +135,8 @@ function RootLayoutNav() {
           headerTitle: "Booking",
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={28} />
+              {/* <Ionicons name="close-outline" size={28} /> */}
+              <CrossIcon width={24} height={24} color={"#000000"} />
             </TouchableOpacity>
           ),
         }}
@@ -148,7 +149,8 @@ function RootLayoutNav() {
           headerTitle: "Splash Screen",
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={28} />
+              {/* <Ionicons name="close-outline" size={28} /> */}
+              <CrossIcon width={24} height={24} color={"#000000"} />
             </TouchableOpacity>
           ),
         }}

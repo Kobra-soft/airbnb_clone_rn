@@ -34,7 +34,6 @@ function shuffleArray(array: any[]) {
 // Generates random dates for the listings
 // 
 
-
 // Function to generate a random date range for the next month
 const generateDateRange = (duration: number) => {
   // Get the current date

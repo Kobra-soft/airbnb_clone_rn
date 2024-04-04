@@ -5,15 +5,27 @@ import { useNavigation, Link } from "expo-router";
 import { defaultStyles } from "@/constants/Styles";
 import Colors from "@/constants/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ProfileNavigationItemComponent from "@/components/ProfileNavigationItemComponent";
+import ProfileNavItemComponent from "@/components/ProfileNavItemComponent";
 import CrossIcon from "@/assets/svgs/cross.svg";
 import HelpIcon from "@/assets/svgs/help.svg";
 
 interface Props {
-  icon: string | React.ReactNode;
+  icon: IconName | React.ReactNode;
   text: string;
   size?: number;
 }
+
+type IconName =
+  | "settings"
+  | "accessibility"
+  | "information-circle"
+  | "help-circle"
+  | "document-text"
+  | "settings-outline"
+  | "accessibility-outline"
+  | "information-circle-outline"
+  | "help-circle-outline"
+  | "document-text-outline";
 
 const ProfileScreen = () => {
   const { signOut, isSignedIn } = useAuth();
@@ -92,31 +104,31 @@ const ProfileScreen = () => {
         </View>
 
         <View>
-          <ProfileNavigationItemComponent
+          <ProfileNavItemComponent
             icon="settings-outline"
             text="Settings"
           />
-          <ProfileNavigationItemComponent
+          <ProfileNavItemComponent
             icon="accessibility-outline"
             text="Accessibility"
           />
-          <ProfileNavigationItemComponent
+          <ProfileNavItemComponent
             icon="information-circle-outline"
             text="Learn about hosting"
           />
-          <ProfileNavigationItemComponent
+          <ProfileNavItemComponent
             icon="help-circle-outline"
             text="Get help"
           />
-          <ProfileNavigationItemComponent
+          <ProfileNavItemComponent
             icon="document-text-outline"
             text="Terms of Service"
           />
-          <ProfileNavigationItemComponent
+          <ProfileNavItemComponent
             icon="document-text-outline"
             text="Privacy Policy"
           />
-          <ProfileNavigationItemComponent
+          <ProfileNavItemComponent
             icon="book-outline"
             text="Open source licences"
           />
@@ -136,7 +148,7 @@ const ProfileScreen = () => {
               },
             ]}
           >
-            Version 24.10 (28002967)
+            Version 24.13 (28003186)
           </Text>
         </View>
       </View>
