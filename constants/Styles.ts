@@ -68,7 +68,7 @@ export const defaultStyles = StyleSheet.create({
     position: "absolute",
     left: 20,
   },
-  /*   footer: {
+    footer: {
     position: "absolute",
     height: 100,
     bottom: 0,
@@ -79,5 +79,5 @@ export const defaultStyles = StyleSheet.create({
     paddingHorizontal: 20,
     borderTopColor: Colors.grey,
     borderTopWidth: StyleSheet.hairlineWidth,
-  }, */
+  },
 });
