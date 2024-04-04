@@ -155,7 +155,7 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
   });
 
   return (
-    <View style={{ backgroundColor: "#ffffff" }}>
+    <View style={{ backgroundColor: "#ffffff"}}>
       <SafeAreaView style={{ backgroundColor: "#ffffff" }}>
         <View style={styles.container}>
           <View style={styles.actionRow}>
@@ -340,6 +340,7 @@ const styles = StyleSheet.create({
     height: 24,
     top: 3,
   },
+
 });
 
 export default ExploreHeader;

@@ -3,8 +3,13 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Link, Stack } from "expo-router";
 import ExploreHeader from "@/components/ExploreHeader";
 import Listings from "@/components/Listings";
-import listingsData from "@/assets/data/airbnb-listings.json";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+////////////////////////////////////////////////////////////////////
+// JSON data for the listings
+////////////////////////////////////////////////////////////////////
+
+/* import listingsData from "@/assets/data/airbnb-listings.json"; */
+import listingsData from "@/assets/data/airbnb-listings2.json";
 
 const IndexScreen = () => {
 
@@ -23,14 +28,14 @@ const IndexScreen = () => {
 
   return (
     <SafeAreaProvider>
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, paddingVertical:0}}>
         <Stack.Screen
           options={{
             header: () => <ExploreHeader onCategoryChanged={onDataChanged} />,
           }}
         />
 
-        <Listings listings={items} category={category}/>
+        <Listings listings={items} category={category} />
       </View>
     </SafeAreaProvider>
   );

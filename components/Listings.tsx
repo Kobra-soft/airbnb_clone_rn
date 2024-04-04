@@ -177,12 +177,11 @@ const Listings = ({ listings: items, category }: Props) => {
               color: "#717171",
             }}
           >
-            Hosted by {item.host_name}
+            Hosted by {item.host_name.length > 20 ? item.host_name.substring(0, 20) + '...' : item.host_name}
           </Text>
 
           <View
             style={{
-              paddingTop: 0,
               flexDirection: "row",
               justifyContent: "space-between",
             }}
@@ -240,7 +239,8 @@ const Listings = ({ listings: items, category }: Props) => {
 
 const styles = StyleSheet.create({
   listing: {
-    paddingVertical: 23,
+    paddingTop: 23,
+    paddingBottom: 18,
     paddingHorizontal: 24,
     marginTop: 0,
   },
