@@ -152,7 +152,7 @@ const Listings = ({ listings: items, category }: Props) => {
           </TouchableOpacity>
           <View
             style={{
-              paddingTop: 13,
+              paddingTop: 11,
               flexDirection: "row",
               justifyContent: "space-between",
             }}
@@ -173,7 +173,7 @@ const Listings = ({ listings: items, category }: Props) => {
             style={{
               fontFamily: "Cereal",
               fontSize: 15,
-              paddingTop: 4,
+              paddingTop: 3,
               color: "#717171",
             }}
           >
@@ -191,7 +191,7 @@ const Listings = ({ listings: items, category }: Props) => {
               style={{
                 fontFamily: "Cereal",
                 fontSize: 15,
-                paddingTop: 4,
+                paddingTop: 3,
                 color: "#717171",
               }}
             >
@@ -204,7 +204,7 @@ const Listings = ({ listings: items, category }: Props) => {
                 style={{
                   fontFamily: "Cereal",
                   fontSize: 15,
-                  paddingTop: 4,
+                  paddingTop: 0,
                   color: "#717171",
                 }}
               >
@@ -213,7 +213,7 @@ const Listings = ({ listings: items, category }: Props) => {
             </View>
           </View>
 
-          <View style={{ flexDirection: "row", gap: 4, marginTop: 10 }}>
+          <View style={{ flexDirection: "row", gap: 4, marginTop: 7 }}>
             <Text style={{ textDecorationLine: "underline" }}>
               <Text style={{ fontFamily: "Cereal-bold", fontSize: 16 }}>
                 £{(item.price * item.duration).toLocaleString()}
@@ -240,12 +240,13 @@ const Listings = ({ listings: items, category }: Props) => {
 
 const styles = StyleSheet.create({
   listing: {
-    padding: 25,
+    paddingVertical: 23,
+    paddingHorizontal: 24,
     marginTop: 0,
   },
   image: {
     width: "100%",
-    height: 345,
+    height: 346,
     borderRadius: 13,
     backgroundColor: "#f5f5f5",
   },
