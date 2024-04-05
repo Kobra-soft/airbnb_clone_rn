@@ -22,6 +22,7 @@ import Animated, {
 import { defaultStyles } from "@/constants/Styles";
 import ChevronLeftIcon from "@/assets/svgs/chevron_left.svg";
 import HeartIcon1 from "@/assets/svgs/heart.svg";
+import StarIcon from "@/assets/svgs/star.svg";
 
 const { width } = Dimensions.get("window");
 const IMG_HEIGHT = 309;
@@ -34,7 +35,7 @@ const DetailsPage = () => {
 
   if (!listing) {
     // Handle the case when listing is undefined
-    // For example, you can return a message or a loading spinner
+    // For example, to return a message or a loading spinner
     return <Text>Listing not found</Text>;
   }
 
@@ -133,12 +134,24 @@ const DetailsPage = () => {
             {listing.guests_included} guests · {listing.bedrooms} bedrooms ·{" "}
             {listing.beds} bed · {listing.bathrooms} bathrooms
           </Text>
-          <View style={{ flexDirection: "row", gap: 4 }}>
-            <Ionicons name="star" size={16} />
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 4,
+              marginBottom: 5,
+            }}
+          >
+            {/* <Ionicons name="star" size={16} /> */}
+            <StarIcon width={14} height={14} fill={"#000000"} />
             <Text style={styles.ratings}>
-            {listing.review_scores_rating / 20} · <Text style={{ textDecorationLine: 'underline' }}>{listing.number_of_reviews} reviews</Text>
+              {listing.review_scores_rating / 20} ·{" "}
+              <Text style={{ textDecorationLine: "underline" }}>
+                {listing.number_of_reviews} reviews
+              </Text>
             </Text>
           </View>
+
           <View style={styles.divider} />
 
           <View style={styles.hostView}>
@@ -247,12 +260,11 @@ const styles = StyleSheet.create({
   ratings: {
     fontSize: 15,
     fontFamily: "Cereal-medium",
-    marginBottom: 6,
   },
   divider: {
     height: StyleSheet.hairlineWidth,
     backgroundColor: Colors.grey,
-    marginVertical: 16,
+    marginVertical: 20,
   },
   host: {
     width: 50,

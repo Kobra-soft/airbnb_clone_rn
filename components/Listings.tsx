@@ -14,6 +14,7 @@ import { Listing } from "@/interfaces/listing";
 import { Ionicons } from "@expo/vector-icons";
 import HeartIcon1 from "../assets/svgs/heart.svg";
 import HeartIcon2 from "../assets/svgs/heart2.svg";
+import StarIcon from "../assets/svgs/star.svg";
 import Animated, { FadeInRight, FadeOutLeft } from "react-native-reanimated";
 import { format } from "date-fns";
 
@@ -163,7 +164,13 @@ const Listings = ({ listings: items, category }: Props) => {
             <View
               style={{ flexDirection: "row", gap: 4, alignItems: "center" }}
             >
-              <Ionicons name="star" size={13} />
+              {/* <Ionicons name="star" size={13} /> */}
+              <StarIcon
+              width={12}
+              height={12}
+              fill={"#000000"}
+            />
+
               <Text style={{ fontFamily: "Cereal", fontSize: 15 }}>
                 {item.review_scores_rating / 20}
               </Text>
