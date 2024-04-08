@@ -4,24 +4,15 @@ import { Link, Stack } from "expo-router";
 import ExploreHeader from "@/components/ExploreHeader";
 import Listings from "@/components/Listings";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-////////////////////////////////////////////////////////////////////
-// JSON data for the listings
-////////////////////////////////////////////////////////////////////
-
 /* import listingsData from "@/assets/data/airbnb-listings.json"; */
 import listingsData from "@/assets/data/airbnb-listings2.json";
 
 const IndexScreen = () => {
 
-/*   const onDataChanged = (category: string) => {
-    console.log('Changed_ ', category);
-  } */
-
   const [ category, setCategory ] = useState('Earth homes');
   const items = useMemo(() => listingsData as any, []);
 
   const onDataChanged = (category: string) => {
-    /* console.log('CHANGED_ ', category); */
     setCategory(category);
   };
 

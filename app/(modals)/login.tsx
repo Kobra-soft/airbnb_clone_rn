@@ -6,7 +6,6 @@ import Colors from "@/constants/Colors";
 import { AntDesign, Feather, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useOAuth } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
-
 import PhoneIcon from "@/assets/svgs/Phone_Icon.svg";
 import FacebookIcon from "@/assets/svgs/icons8-facebook.svg";
 import GoogleIcon from "@/assets/svgs/icons8-google.svg";
@@ -135,7 +134,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   btnOutlineText: {
-    /* color: '#000', */
     color: Colors.dark,
     fontSize: 16,
     fontFamily: 'Cereal-medium',
