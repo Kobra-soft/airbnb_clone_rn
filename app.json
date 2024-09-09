@@ -23,7 +23,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "suppressMatchedInstanceWarnings": true
+      "suppressMatchedInstanceWarnings": true,
+      "package": "com.kobrasoft.airbnb_clone_rn"
     },
     "web": {
       "bundler": "metro",

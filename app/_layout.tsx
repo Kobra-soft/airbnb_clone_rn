@@ -41,17 +41,17 @@ export const unstable_settings = {
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
+/*   const [loaded, error] = useFonts({
     "Cereal-light": require("../assets/fonts/AirbnbCereal_W_Lt.otf"),
     "Cereal": require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
     "Cereal-medium": require("../assets/fonts/AirbnbCereal_W_Md.otf"),
     "Cereal-bold": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
     "Cereal-extra-bold": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
     "Cereal-black": require("../assets/fonts/AirbnbCereal_W_Blk.otf"),
-  });
+  }); */
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
+/*   useEffect(() => {
     if (error) throw error;
   }, [error]);
 
@@ -62,6 +62,27 @@ export default function RootLayout() {
   }, [loaded]);
 
   if (!loaded) {
+    return null;
+  } */
+
+
+  // NEW EXPO FONT 12.0.10 code to test
+  const [fontsLoaded] = useFonts({
+    "Cereal-light": require("../assets/fonts/AirbnbCereal_W_Lt.otf"),
+    "Cereal": require("../assets/fonts/AirbnbCereal_W_Bk.otf"),
+    "Cereal-medium": require("../assets/fonts/AirbnbCereal_W_Md.otf"),
+    "Cereal-bold": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
+    "Cereal-extra-bold": require("../assets/fonts/AirbnbCereal_W_Bd.otf"),
+    "Cereal-black": require("../assets/fonts/AirbnbCereal_W_Blk.otf"),
+  });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
     return null;
   }
 
